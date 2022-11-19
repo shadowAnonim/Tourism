@@ -24,6 +24,8 @@ namespace Tourism
         public MainWindow()
         {
             InitializeComponent();
+            mainEntities db = new mainEntities();
+            hotelDataGrid.ItemsSource = db.Hotel.ToList();
         }
 
 
