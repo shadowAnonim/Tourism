@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище mainModel" Provider="System.Data.SQLite.EF6" ProviderManifestToken="Data Source=C:\Users\Evgeny\source\repos\Tourism\Tourism\Hotels.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="mainModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="Data Source=C:\Users\ASUS\Source\Repos\Tourism\Tourism\Hotels.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Hotel">
           <Key>
             <PropertyRef Name="Id" />
@@ -66,7 +66,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище mainModelContainer">
+        <Association Name="FK_Manager_0_0">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mainModelStoreContainer">
           <EntitySet Name="Hotel" EntityType="Self.Hotel" store:Type="Tables" />
           <EntitySet Name="Manager" EntityType="Self.Manager" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" store:Type="Tables" />
@@ -78,6 +90,10 @@
           <AssociationSet Name="FK_Hotel_1_0" Association="Self.FK_Hotel_1_0">
             <End Role="Region" EntitySet="Region" />
             <End Role="Hotel" EntitySet="Hotel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_0_0" Association="Self.FK_Manager_0_0">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Manager" EntitySet="Manager" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -110,6 +126,7 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RoleId" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_Hotel_0_0" FromRole="Manager" ToRole="Hotel" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_Manager_0_0" FromRole="Manager" ToRole="Role" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -125,6 +142,7 @@
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_Manager_0_0" FromRole="Role" ToRole="Manager" />
         </EntityType>
         <Association Name="FK_Hotel_0_0">
           <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
@@ -150,7 +168,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="mainEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Manager_0_0">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TourismEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Hotel" EntityType="Self.Hotel" />
           <EntitySet Name="Manager" EntityType="Self.Manager" />
           <EntitySet Name="Region" EntityType="Self.Region" />
@@ -163,13 +193,17 @@
             <End Role="Region" EntitySet="Region" />
             <End Role="Hotel" EntitySet="Hotel" />
           </AssociationSet>
+          <AssociationSet Name="FK_Manager_0_0" Association="Self.FK_Manager_0_0">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище mainModelContainer" CdmEntityContainer="mainEntities">
+        <EntityContainerMapping StorageEntityContainer="mainModelStoreContainer" CdmEntityContainer="TourismEntities">
           <EntitySetMapping Name="Hotel">
             <EntityTypeMapping TypeName="mainModel.Hotel">
               <MappingFragment StoreEntitySet="Hotel">
@@ -228,7 +262,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

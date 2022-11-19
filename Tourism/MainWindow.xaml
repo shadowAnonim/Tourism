@@ -7,16 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <DataGrid x:Name="hotelDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="316,178,84,56">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Description" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="managerIdColumn" Binding="{Binding ManagerId}" Header="Manager Id" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="phoneColumn" Binding="{Binding Phone}" Header="Phone" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="regionIdColumn" Binding="{Binding RegionId}" Header="Region Id" Width="SizeToHeader"/>
-            </DataGrid.Columns>
-        </DataGrid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label x:Name="titleLbl" Grid.Column="1" Content="title" FontSize="20" FontWeight="Bold"/>
+        <Frame x:Name="frame" Grid.Row="1" Grid.ColumnSpan="3" NavigationUIVisibility="Hidden" Source="/HotelsPage.xaml" Navigated="frame_Navigated"/>
+        
     </Grid>
 </Window>

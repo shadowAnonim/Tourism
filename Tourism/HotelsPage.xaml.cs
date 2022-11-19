@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,19 +16,13 @@ using System.Windows.Shapes;
 namespace Tourism
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Interaction logic for HotelsPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HotelsPage : Page
     {
-        public MainWindow()
+        public HotelsPage()
         {
             InitializeComponent();
-        }
-
-        private void frame_Navigated(object sender, NavigationEventArgs e)
-        {
-            Page content = e.Content as Page;
-            titleLbl.Content = content.Title;
         }
     }
 }

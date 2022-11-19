@@ -84,6 +84,9 @@
     <Compile Include="Hotel.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="HotelsPage.xaml.cs">
+      <DependentUpon>HotelsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Manager.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
@@ -93,6 +96,10 @@
     <Compile Include="Role.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Page Include="HotelsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -141,9 +148,10 @@
     <None Include="DbModel.edmx.diagram">
       <DependentUpon>DbModel.edmx</DependentUpon>
     </None>
-    <None Include="Hotels.db" />
+    <None Include="Hotels.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Hotel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -153,10 +161,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="DbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DbModel.Context.cs</LastGenOutput>
       <DependentUpon>DbModel.edmx</DependentUpon>
+      <LastGenOutput>DbModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DbModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -165,7 +176,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
