@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace Tourism
 {
     /// <summary>
-    /// Interaction logic for HotelsPage.xaml
+    /// Interaction logic for HotelPage.xaml
     /// </summary>
-    public partial class HotelsPage : Page
+    public partial class HotelPage : Page
     {
-        public HotelsPage()
+        public HotelPage()
         {
             InitializeComponent();
-            hotelDataGrid.ItemsSource = Utils.db.Hotel.ToList();
         }
     }
 }

@@ -9,6 +9,26 @@
       Title="Отели">
 
     <Grid>
-        <Label Content="afoajoeajfoajfoeja"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="addBtn" Content="Добавить" Grid.Column="0"/>
+        <Button x:Name="editBtn" Content="Редактировать" Grid.Column="1"/>
+        <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2"/>
+        <DataGrid x:Name="hotelDataGrid" Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Название" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="managerIdColumn" Binding="{Binding Manager.LastName}" Header="Управляющий" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="phoneColumn" Binding="{Binding Phone}" Header="Телефон" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="regionIdColumn" Binding="{Binding Region.Name}" Header="Регион" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Описание"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

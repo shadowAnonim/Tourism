@@ -96,6 +96,7 @@
     <Compile Include="Role.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
     <Page Include="HotelsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
