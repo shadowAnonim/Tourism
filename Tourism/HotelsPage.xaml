@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Tourism"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Отели">
+      Title="Отели" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -18,9 +18,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="addBtn" Content="Добавить" Grid.Column="0"/>
-        <Button x:Name="editBtn" Content="Редактировать" Grid.Column="1"/>
-        <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2"/>
+        <Button x:Name="addBtn" Content="Добавить" Grid.Column="0" Click="addBtn_Click"/>
+        <Button x:Name="editBtn" Content="Редактировать" Grid.Column="1" Click="editBtn_Click"/>
+        <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" Click="deleteBtn_Click"/>
         <DataGrid x:Name="hotelDataGrid" Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Название" Width="SizeToCells"/>
