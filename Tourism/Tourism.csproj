@@ -96,6 +96,9 @@
     <Compile Include="Manager.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ManagersPage.xaml.cs">
+      <DependentUpon>ManagersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Region.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ManagersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RegionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

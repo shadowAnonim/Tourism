@@ -20,9 +20,43 @@ namespace Tourism
     /// </summary>
     public partial class RegionPage : Page
     {
+        Region region;
+        bool edit = false;
         public RegionPage(Region region = null)
         {
             InitializeComponent();
+            try
+            {
+                if (region == null)
+                {
+                    this.region = new Region();
+                }
+                else
+                {
+                    this.region = region;
+                    edit = true;
+                }
+                regionGrid.DataContext = this.region;
+            }
+            catch (Exception ex)
+            {
+                Utils.Error(ex.Message);
+            }
+        }
+
+        private void saveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (!edit)
+                    Utils.db.Region.Add(region);
+                Utils.db.SaveChanges();
+                NavigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                Utils.Error(ex.Message);
+            }
         }
     }
 }

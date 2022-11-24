@@ -6,13 +6,13 @@
       xmlns:local="clr-namespace:Tourism"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainPage">
+      Title="Главное меню">
 
     <Grid>
         <StackPanel>
             <Button x:Name="hotelsBtn" Content="Отели" Click="hotelsBtn_Click"/>
             <Button x:Name="regionsBtn" Content="Регионы" Click="regionsBtn_Click"/>
-            <Button x:Name="personalBtn" Content="Управляющие"/>
+            <Button x:Name="personalBtn" Content="Управляющие" Click="personalBtn_Click"/>
             <Button x:Name="rolesBtn" Content="Роли"/>
         </StackPanel>
     </Grid>
