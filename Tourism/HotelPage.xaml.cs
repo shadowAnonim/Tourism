@@ -25,18 +25,25 @@ namespace Tourism
         public HotelPage(Hotel hotel = null)
         {
             InitializeComponent();
-            if (hotel == null)
+            try
             {
-                this.hotel = new Hotel();
+                if (hotel == null)
+                {
+                    this.hotel = new Hotel();
+                }
+                else
+                {
+                    this.hotel = hotel;
+                    edit = true;
+                }
+                hotelGrid.DataContext = this.hotel;
+                managerIdTextBox.ItemsSource = Utils.db.Manager.ToList();
+                regionIdTextBox.ItemsSource = Utils.db.Region.ToList();
             }
-            else
+            catch (Exception ex)
             {
-                this.hotel = hotel;
-                edit = true;
+                Utils.Error(ex.Message);
             }
-            hotelGrid.DataContext= this.hotel;
-            managerIdTextBox.ItemsSource = Utils.db.Manager.ToList();
-            regionIdTextBox.ItemsSource = Utils.db.Region.ToList();
         }
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
@@ -50,7 +57,7 @@ namespace Tourism
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                Utils.Error(ex.Message);
             }
 
         }

@@ -1,4 +1,4 @@
-﻿<Page x:Class="Tourism.HotelsPage"
+﻿<Page x:Class="Tourism.RegionsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Tourism"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Отели" Loaded="Page_Loaded">
+      Title="RegionsPage" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -21,14 +21,11 @@
         <Button x:Name="addBtn" Content="Добавить" Grid.Column="0" Click="addBtn_Click"/>
         <Button x:Name="editBtn" Content="Редактировать" Grid.Column="1" Click="editBtn_Click"/>
         <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" Click="deleteBtn_Click" BorderBrush="Red" BorderThickness="3"/>
-        <DataGrid x:Name="hotelDataGrid" Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3">
+        <DataGrid x:Name="regionDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" Grid.ColumnSpan="3">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Название" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="managerIdColumn" Binding="{Binding Manager.LastName}" Header="Управляющий" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="phoneColumn" Binding="{Binding Phone}" Header="Телефон" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="regionIdColumn" Binding="{Binding Region.Name}" Header="Регион" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Описание"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToCells"/>
             </DataGrid.Columns>
         </DataGrid>
+
     </Grid>
 </Page>

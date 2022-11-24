@@ -30,6 +30,15 @@ namespace Tourism
         {
             Page content = e.Content as Page;
             titleLbl.Content = content.Title;
+            if (content is MainPage)
+                backBtn.Visibility = Visibility.Collapsed;
+            else
+                backBtn.Visibility = Visibility.Visible;
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            frame.NavigationService.GoBack();
         }
     }
 }
