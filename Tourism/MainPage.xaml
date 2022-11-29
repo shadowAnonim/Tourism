@@ -13,7 +13,7 @@
             <Button x:Name="hotelsBtn" Content="Отели" Click="hotelsBtn_Click"/>
             <Button x:Name="regionsBtn" Content="Регионы" Click="regionsBtn_Click"/>
             <Button x:Name="personalBtn" Content="Управляющие" Click="personalBtn_Click"/>
-            <Button x:Name="rolesBtn" Content="Роли"/>
+            <Button x:Name="rolesBtn" Content="Роли" Click="rolesBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>

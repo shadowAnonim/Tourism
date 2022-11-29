@@ -16,58 +16,46 @@ using System.Windows.Shapes;
 namespace Tourism
 {
     /// <summary>
-    /// Логика взаимодействия для RegionsPage.xaml
+    /// Логика взаимодействия для RolesPage.xaml
     /// </summary>
-    public partial class RegionsPage : Page
+    public partial class RolesPage : Page
     {
-        public RegionsPage()
+        public RolesPage()
         {
             InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                regionDataGrid.ItemsSource = Utils.db.Region.ToList();
-            }
-            catch (Exception ex)
-            {
-                Utils.Error(ex.Message);
-            }
-        }
-
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new RegionPage());
+            NavigationService.Navigate(new RolePage());
         }
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (regionDataGrid.SelectedItem == null)
+            if (roleDataGrid.SelectedItem == null)
             {
-                MessageBox.Show("Выберите регион ");
+                MessageBox.Show("Выберите роль");
                 return;
             }
-            Region selected = regionDataGrid.SelectedItem as Region;
-            NavigationService.Navigate(new RegionPage(selected));
+            Role selected = roleDataGrid.SelectedItem as Role;
+            NavigationService.Navigate(new RolePage(selected));
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (regionDataGrid.SelectedItem == null)
+            if (roleDataGrid.SelectedItem == null)
             {
                 MessageBox.Show("Выберите регион");
                 return;
             }
-            if (MessageBox.Show("Вы точно хотите удалить этот регион?",
+            if (MessageBox.Show("Вы точно хотите удалить эту роль?",
                 "Подтвердите удаление", MessageBoxButton.YesNo,
                 MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    Region selected = regionDataGrid.SelectedItem as Region;
-                    Utils.db.Region.Remove(selected);
+                    Role selected = roleDataGrid.SelectedItem as Role;
+                    Utils.db.Role.Remove(selected);
                     Utils.db.SaveChanges();
                     Page_Loaded(null, null);
                 }
@@ -75,6 +63,18 @@ namespace Tourism
                 {
                     Utils.Error(ex.Message);
                 }
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                roleDataGrid.ItemsSource = Utils.db.Role.ToList();
+            }
+            catch (Exception ex)
+            {
+                Utils.Error(ex.Message);
             }
         }
     }

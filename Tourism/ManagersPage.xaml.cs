@@ -18,9 +18,9 @@ namespace Tourism
     /// <summary>
     /// Логика взаимодействия для ManagerPage.xaml
     /// </summary>
-    public partial class ManagerPage : Page
+    public partial class ManagersPage : Page
     {
-        public ManagerPage()
+        public ManagersPage()
         {
             InitializeComponent();
         }
@@ -39,17 +39,43 @@ namespace Tourism
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new ManagerPage());
         }
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (managerDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите управляющего");
+                return;
+            }
+            Manager selected = managerDataGrid.SelectedItem as Manager;
+            NavigationService.Navigate(new ManagerPage(selected));
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (managerDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите управляющего");
+                return;
+            }
+            if (MessageBox.Show("Вы точно хотите удалить этого управляющего?",
+                "Подтвердите удаление", MessageBoxButton.YesNo,
+                MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Manager selected = managerDataGrid.SelectedItem as Manager;
+                    Utils.db.Manager.Remove(selected);
+                    Utils.db.SaveChanges();
+                    Page_Loaded(null, null);
+                }
+                catch (Exception ex)
+                {
+                    Utils.Error(ex.Message);
+                }
+            }
         }
     }
 }

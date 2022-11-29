@@ -16,29 +16,27 @@ using System.Windows.Shapes;
 namespace Tourism
 {
     /// <summary>
-    /// Логика взаимодействия для ManagerPage.xaml
+    /// Логика взаимодействия для RolePage.xaml
     /// </summary>
-    public partial class ManagerPage : Page
+    public partial class RolePage : Page
     {
-
-        Manager manager;
+        Role role;
         bool edit = false;
-        public ManagerPage(Manager manager = null)
+        public RolePage(Role role = null)
         {
             InitializeComponent();
             try
             {
-                if (manager == null)
+                if (role == null)
                 {
-                    this.manager = new Manager();
+                    this.role = new Role();
                 }
                 else
                 {
-                    this.manager = manager;
+                    this.role = role;
                     edit = true;
                 }
-                managerGrid.DataContext = this.manager;
-                roleIdTextBox.ItemsSource = Utils.db.Role.ToList();
+                roleGrid.DataContext = this.role;
             }
             catch (Exception ex)
             {
@@ -51,7 +49,7 @@ namespace Tourism
             try
             {
                 if (!edit)
-                    Utils.db.Manager.Add(manager);
+                    Utils.db.Role.Add(role);
                 Utils.db.SaveChanges();
                 NavigationService.GoBack();
             }
@@ -59,12 +57,6 @@ namespace Tourism
             {
                 Utils.Error(ex.Message);
             }
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            if(!edit)
-                roleIdTextBox.SelectedIndex = 0;
         }
     }
 }

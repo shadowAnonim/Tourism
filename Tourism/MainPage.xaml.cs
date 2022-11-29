@@ -37,7 +37,12 @@ namespace Tourism
 
         private void personalBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ManagerPage());
+            NavigationService.Navigate(new ManagersPage());
+        }
+
+        private void rolesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RolesPage());
         }
     }
 }
