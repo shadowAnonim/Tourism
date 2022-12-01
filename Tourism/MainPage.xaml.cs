@@ -44,5 +44,15 @@ namespace Tourism
         {
             NavigationService.Navigate(new RolesPage());
         }
+
+        private void toursBtn_Click(Object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ToursPage());
+        }
+
+        private void feedingBtn_Click(Object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new FeedingsPage());
+        }
     }
 }
