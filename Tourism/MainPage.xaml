@@ -14,6 +14,8 @@
             <Button x:Name="regionsBtn" Content="Регионы" Click="regionsBtn_Click"/>
             <Button x:Name="personalBtn" Content="Управляющие" Click="personalBtn_Click"/>
             <Button x:Name="rolesBtn" Content="Роли" Click="rolesBtn_Click"/>
+            <Button x:Name="clientsBtn" Content="Клиенты" Click="clientsBtn_Click"/>
+            <Button x:Name="clientTypesBtn" Content="Типы клиентов" Click="clientTypesBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>
