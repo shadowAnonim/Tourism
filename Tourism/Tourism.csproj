@@ -112,6 +112,12 @@
     <Compile Include="Feeding.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FeedingPage.xaml.cs">
+      <DependentUpon>FeedingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FeedingsPage.xaml.cs">
+      <DependentUpon>FeedingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Hotel.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
@@ -154,7 +160,21 @@
     <Compile Include="Tour.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TourPage.xaml.cs">
+      <DependentUpon>TourPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ToursPage.xaml.cs">
+      <DependentUpon>ToursPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
+    <Page Include="FeedingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FeedingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ClientPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,6 +236,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RolesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TourPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ToursPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
