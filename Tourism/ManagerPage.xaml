@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Tourism"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ManagerPage" Loaded="Page_Loaded">
+      Title="Контактное лицо" Loaded="Page_Loaded">
 
     <Grid>
         <StackPanel>
