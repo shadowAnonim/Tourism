@@ -12,18 +12,15 @@ namespace Tourism
     using System;
     using System.Collections.Generic;
     
-    public partial class Region
+    public partial class Client
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Region()
-        {
-            this.Hotel = new HashSet<Hotel>();
-        }
-    
         public long Id { get; set; }
-        public string Name { get; set; }
+        public string First_name { get; set; }
+        public string Last_name { get; set; }
+        public long Manager_id { get; set; }
+        public long Type_id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Hotel> Hotel { get; set; }
+        public virtual Client_type Client_type { get; set; }
+        public virtual Manager Manager { get; set; }
     }
 }

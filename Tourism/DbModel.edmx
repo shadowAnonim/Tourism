@@ -4,7 +4,33 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="mainModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="Data Source=C:\Users\ASUS\Source\Repos\Tourism\Tourism\Hotels.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище mainModel" Provider="System.Data.SQLite.EF6" ProviderManifestToken="Data Source=C:\Users\Evgeny\source\repos\Tourism\Tourism\Hotels.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6006: Аспект "MaxLength" со значением "0" находится вне диапазона 1-2147483647, указанного в описании аспекта.  Столбец "Middle name" в таблице "main.Client" исключен.-->
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last name" Type="varchar" MaxLength="50" />
+          <Property Name="Manager id" Type="integer" Nullable="false" />
+          <Property Name="Type id" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feeding">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
         <EntityType Name="Hotel">
           <Key>
             <PropertyRef Name="Id" />
@@ -42,6 +68,42 @@
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Hotel id" Type="integer" Nullable="false" />
+          <Property Name="Arrival date" Type="datetime" Nullable="false" />
+          <Property Name="Departure date" Type="datetime" Nullable="false" />
+          <Property Name="Feeding id" Type="integer" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <Association Name="FK_Client_0_0">
+          <End Role="Client type" Type="Self.Client type" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Type id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_1_0">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Manager id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Hotel_0_0">
           <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
           <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
@@ -78,11 +140,47 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="mainModelStoreContainer">
+        <Association Name="FK_Tour_0_0">
+          <End Role="Feeding" Type="Self.Feeding" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feeding">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="Feeding id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour_1_0">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="Hotel id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище mainModelContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" store:Type="Tables" />
+          <EntitySet Name="Client type" EntityType="Self.Client type" store:Type="Tables" />
+          <EntitySet Name="Feeding" EntityType="Self.Feeding" store:Type="Tables" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" store:Type="Tables" />
           <EntitySet Name="Manager" EntityType="Self.Manager" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" store:Type="Tables" />
+          <EntitySet Name="Tour" EntityType="Self.Tour" store:Type="Tables" />
+          <AssociationSet Name="FK_Client_0_0" Association="Self.FK_Client_0_0">
+            <End Role="Client type" EntitySet="Client type" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_1_0" Association="Self.FK_Client_1_0">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
           <AssociationSet Name="FK_Hotel_0_0" Association="Self.FK_Hotel_0_0">
             <End Role="Manager" EntitySet="Manager" />
             <End Role="Hotel" EntitySet="Hotel" />
@@ -95,12 +193,48 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="Manager" EntitySet="Manager" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tour_0_0" Association="Self.FK_Tour_0_0">
+            <End Role="Feeding" EntitySet="Feeding" />
+            <End Role="Tour" EntitySet="Tour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_1_0" Association="Self.FK_Tour_1_0">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Tour" EntitySet="Tour" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Manager_id" Type="Int64" Nullable="false" />
+          <Property Name="Type_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Client_type" Relationship="Self.FK_Client_0_0" FromRole="Client" ToRole="Client_type" />
+          <NavigationProperty Name="Manager" Relationship="Self.FK_Client_1_0" FromRole="Client" ToRole="Manager" />
+        </EntityType>
+        <EntityType Name="Client_type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_0_0" FromRole="Client_type" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Feeding">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK_Tour_0_0" FromRole="Feeding" ToRole="Tour" />
+        </EntityType>
         <EntityType Name="Hotel">
           <Key>
             <PropertyRef Name="Id" />
@@ -113,6 +247,7 @@
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Manager" Relationship="Self.FK_Hotel_0_0" FromRole="Hotel" ToRole="Manager" />
           <NavigationProperty Name="Region" Relationship="Self.FK_Hotel_1_0" FromRole="Hotel" ToRole="Region" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK_Tour_1_0" FromRole="Hotel" ToRole="Tour" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
@@ -125,6 +260,7 @@
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RoleId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_1_0" FromRole="Manager" ToRole="Client" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_Hotel_0_0" FromRole="Manager" ToRole="Hotel" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Manager_0_0" FromRole="Manager" ToRole="Role" />
         </EntityType>
@@ -144,6 +280,56 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Manager" Relationship="Self.FK_Manager_0_0" FromRole="Role" ToRole="Manager" />
         </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Hotel_id" Type="Int64" Nullable="false" />
+          <Property Name="Arrival_date" Type="DateTime" Nullable="false" />
+          <Property Name="Departure_date" Type="DateTime" Nullable="false" />
+          <Property Name="Feeding_id" Type="Int64" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="53" Scale="0" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Feeding" Relationship="Self.FK_Tour_0_0" FromRole="Tour" ToRole="Feeding" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK_Tour_1_0" FromRole="Tour" ToRole="Hotel" />
+        </EntityType>
+        <Association Name="FK_Client_0_0">
+          <End Role="Client_type" Type="Self.Client_type" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client_type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_1_0">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Manager_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour_0_0">
+          <End Role="Feeding" Type="Self.Feeding" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feeding">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="Feeding_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Hotel_0_0">
           <End Role="Manager" Type="Self.Manager" Multiplicity="1" />
           <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
@@ -168,6 +354,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tour_1_0">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+          <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tour">
+              <PropertyRef Name="Hotel_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Manager_0_0">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
@@ -180,11 +378,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TourismEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="mainEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Client_type" EntityType="Self.Client_type" />
+          <EntitySet Name="Feeding" EntityType="Self.Feeding" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" />
           <EntitySet Name="Manager" EntityType="Self.Manager" />
           <EntitySet Name="Region" EntityType="Self.Region" />
           <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Tour" EntityType="Self.Tour" />
+          <AssociationSet Name="FK_Client_0_0" Association="Self.FK_Client_0_0">
+            <End Role="Client_type" EntitySet="Client_type" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_1_0" Association="Self.FK_Client_1_0">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_0_0" Association="Self.FK_Tour_0_0">
+            <End Role="Feeding" EntitySet="Feeding" />
+            <End Role="Tour" EntitySet="Tour" />
+          </AssociationSet>
           <AssociationSet Name="FK_Hotel_0_0" Association="Self.FK_Hotel_0_0">
             <End Role="Manager" EntitySet="Manager" />
             <End Role="Hotel" EntitySet="Hotel" />
@@ -192,6 +406,10 @@
           <AssociationSet Name="FK_Hotel_1_0" Association="Self.FK_Hotel_1_0">
             <End Role="Region" EntitySet="Region" />
             <End Role="Hotel" EntitySet="Hotel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_1_0" Association="Self.FK_Tour_1_0">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Tour" EntitySet="Tour" />
           </AssociationSet>
           <AssociationSet Name="FK_Manager_0_0" Association="Self.FK_Manager_0_0">
             <End Role="Role" EntitySet="Role" />
@@ -203,7 +421,34 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="mainModelStoreContainer" CdmEntityContainer="TourismEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище mainModelContainer" CdmEntityContainer="mainEntities">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="mainModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="First_name" ColumnName="First name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last name" />
+                <ScalarProperty Name="Manager_id" ColumnName="Manager id" />
+                <ScalarProperty Name="Type_id" ColumnName="Type id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client_type">
+            <EntityTypeMapping TypeName="mainModel.Client_type">
+              <MappingFragment StoreEntitySet="Client type">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feeding">
+            <EntityTypeMapping TypeName="mainModel.Feeding">
+              <MappingFragment StoreEntitySet="Feeding">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Hotel">
             <EntityTypeMapping TypeName="mainModel.Hotel">
               <MappingFragment StoreEntitySet="Hotel">
@@ -245,6 +490,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tour">
+            <EntityTypeMapping TypeName="mainModel.Tour">
+              <MappingFragment StoreEntitySet="Tour">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Hotel_id" ColumnName="Hotel id" />
+                <ScalarProperty Name="Arrival_date" ColumnName="Arrival date" />
+                <ScalarProperty Name="Departure_date" ColumnName="Departure date" />
+                <ScalarProperty Name="Feeding_id" ColumnName="Feeding id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -262,7 +520,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
