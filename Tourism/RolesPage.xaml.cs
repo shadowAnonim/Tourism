@@ -45,7 +45,7 @@ namespace Tourism
         {
             if (roleDataGrid.SelectedItem == null)
             {
-                MessageBox.Show("Выберите регион");
+                MessageBox.Show("Выберите роль");
                 return;
             }
             if (MessageBox.Show("Вы точно хотите удалить эту роль?",

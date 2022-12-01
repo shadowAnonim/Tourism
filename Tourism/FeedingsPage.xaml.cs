@@ -46,7 +46,7 @@ namespace Tourism
         {
             if (feedingDataGrid.SelectedItem == null)
             {
-                MessageBox.Show("Выберите отель");
+                MessageBox.Show("Выберите тип питания");
                 return;
             }
             Feeding selected = feedingDataGrid.SelectedItem as Feeding;
@@ -57,10 +57,10 @@ namespace Tourism
         {
             if (feedingDataGrid.SelectedItem == null)
             {
-                MessageBox.Show("Выберите отель");
+                MessageBox.Show("Выберите тип питания");
                 return;
             }
-            if (MessageBox.Show("Вы точно хотите удалить этот отель?",
+            if (MessageBox.Show("Вы точно хотите удалить этот тип питания?",
                 "Подтвердите удаление", MessageBoxButton.YesNo,
                 MessageBoxImage.Question) == MessageBoxResult.Yes)
             {

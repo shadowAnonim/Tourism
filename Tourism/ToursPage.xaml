@@ -29,7 +29,13 @@
                 <DataGridTextColumn x:Name="departure_date" Binding="{Binding Departure_date, StringFormat=d}" Header="Дата выезда" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Стоимость" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="feeding_idColumn" Binding="{Binding Feeding.Type}" Header="Тип питания" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Описание" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Описание" Width="SizeToCells">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

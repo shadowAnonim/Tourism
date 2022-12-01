@@ -89,6 +89,8 @@ namespace Tourism
             {
                 feeding_idTextBox.SelectedIndex = 0;
                 hotel_idTextBox.SelectedIndex = 0;
+                arrival_dateDatePicker.SelectedDate = DateTime.Now;
+                departure_dateDatePicker.SelectedDate = DateTime.Now.AddDays(1);
             }
         }
         }
