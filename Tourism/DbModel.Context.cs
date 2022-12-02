@@ -13,10 +13,10 @@ namespace Tourism
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class mainEntities : DbContext
+    public partial class TourismEntities : DbContext
     {
-        public mainEntities()
-            : base("name=mainEntities")
+        public TourismEntities()
+            : base("name=TourismEntities")
         {
         }
     
@@ -25,13 +25,16 @@ namespace Tourism
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Client_type> Client_type { get; set; }
         public virtual DbSet<Feeding> Feeding { get; set; }
         public virtual DbSet<Hotel> Hotel { get; set; }
         public virtual DbSet<Manager> Manager { get; set; }
+        public virtual DbSet<Payment_type> Payment_type { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Tour> Tour { get; set; }
+        public virtual DbSet<Tour_booking> Tour_booking { get; set; }
     }
 }

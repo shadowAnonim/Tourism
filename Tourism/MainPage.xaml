@@ -18,6 +18,7 @@
             <Button x:Name="feedingBtn" Content="Типы питания" Click="feedingBtn_Click"/>
             <Button x:Name="clientsBtn" Content="Клиенты" Click="clientsBtn_Click"/>
             <Button x:Name="clientTypesBtn" Content="Типы клиентов" Click="clientTypesBtn_Click"/>
+            <Button x:Name="bookingsBtn" Content="Заказы" Click="bookingsBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>

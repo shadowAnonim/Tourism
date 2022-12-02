@@ -76,8 +76,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Booking.cs">
+      <DependentUpon>DbMOdel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BookingPage.xaml.cs">
+      <DependentUpon>BookingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BookingsPage.xaml.cs">
+      <DependentUpon>BookingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Client.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>
     <Compile Include="ClientPage.xaml.cs">
       <DependentUpon>ClientPage.xaml</DependentUpon>
@@ -92,25 +101,25 @@
       <DependentUpon>ClientTypesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Client_type.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DbModel.Context.cs">
+    <Compile Include="DbMOdel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbModel.Context.tt</DependentUpon>
+      <DependentUpon>DbMOdel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DbModel.cs">
+    <Compile Include="DbMOdel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DbModel.Designer.cs">
+    <Compile Include="DbMOdel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DbModel.edmx</DependentUpon>
+      <DependentUpon>DbMOdel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Feeding.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>
     <Compile Include="FeedingPage.xaml.cs">
       <DependentUpon>FeedingPage.xaml</DependentUpon>
@@ -119,7 +128,7 @@
       <DependentUpon>FeedingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Hotel.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>
     <Compile Include="HotelPage.xaml.cs">
       <DependentUpon>HotelPage.xaml</DependentUpon>
@@ -131,7 +140,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Manager.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>
     <Compile Include="ManagerPage.xaml.cs">
       <DependentUpon>ManagerPage.xaml</DependentUpon>
@@ -139,8 +148,11 @@
     <Compile Include="ManagersPage.xaml.cs">
       <DependentUpon>ManagersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Payment_type.cs">
+      <DependentUpon>DbMOdel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Region.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>
     <Compile Include="RegionPage.xaml.cs">
       <DependentUpon>RegionPage.xaml</DependentUpon>
@@ -149,7 +161,7 @@
       <DependentUpon>RegionsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>
     <Compile Include="RolePage.xaml.cs">
       <DependentUpon>RolePage.xaml</DependentUpon>
@@ -158,7 +170,7 @@
       <DependentUpon>RolesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tour.cs">
-      <DependentUpon>DbModel.tt</DependentUpon>
+      <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>
     <Compile Include="TourPage.xaml.cs">
       <DependentUpon>TourPage.xaml</DependentUpon>
@@ -166,7 +178,18 @@
     <Compile Include="ToursPage.xaml.cs">
       <DependentUpon>ToursPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tour_booking.cs">
+      <DependentUpon>DbMOdel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
+    <Page Include="BookingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BookingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FeedingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,12 +289,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="DbModel.edmx">
+    <EntityDeploy Include="DbMOdel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DbModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>DbMOdel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DbModel.edmx.diagram">
-      <DependentUpon>DbModel.edmx</DependentUpon>
+    <None Include="DbMOdel.edmx.diagram">
+      <DependentUpon>DbMOdel.edmx</DependentUpon>
     </None>
     <None Include="Hotels.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -292,15 +315,15 @@
     <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DbModel.Context.tt">
+    <Content Include="DbMOdel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbModel.edmx</DependentUpon>
-      <LastGenOutput>DbModel.Context.cs</LastGenOutput>
+      <DependentUpon>DbMOdel.edmx</DependentUpon>
+      <LastGenOutput>DbMOdel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DbModel.tt">
+    <Content Include="DbMOdel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbModel.edmx</DependentUpon>
-      <LastGenOutput>DbModel.cs</LastGenOutput>
+      <DependentUpon>DbMOdel.edmx</DependentUpon>
+      <LastGenOutput>DbMOdel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -14,6 +14,12 @@ namespace Tourism
     
     public partial class Tour
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tour()
+        {
+            this.Tour_booking = new HashSet<Tour_booking>();
+        }
+    
         public long Id { get; set; }
         public long Hotel_id { get; set; }
         public System.DateTime Arrival_date { get; set; }
@@ -24,5 +30,7 @@ namespace Tourism
     
         public virtual Feeding Feeding { get; set; }
         public virtual Hotel Hotel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tour_booking> Tour_booking { get; set; }
     }
 }

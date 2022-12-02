@@ -5,8 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище mainModel" Provider="System.Data.SQLite.EF6" ProviderManifestToken="Data Source=C:\Users\Evgeny\source\repos\Tourism\Tourism\Hotels.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6006: Аспект "MaxLength" со значением "0" находится вне диапазона 1-2147483647, указанного в описании аспекта.  Столбец "Middle name" в таблице "main.Client" исключен.-->
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client id" Type="integer" Nullable="false" />
+          <Property Name="Payment type id" Type="integer" Nullable="false" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -54,6 +60,13 @@
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RoleId" Type="integer" Nullable="false" />
         </EntityType>
+        <EntityType Name="Payment type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="12" Nullable="false" />
+        </EntityType>
         <EntityType Name="Region">
           <Key>
             <PropertyRef Name="Id" />
@@ -80,6 +93,40 @@
           <Property Name="Price" Type="decimal" Precision="53" Scale="0" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="Tour booking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Booking id" Type="integer" Nullable="false" />
+          <Property Name="Tour id" Type="integer" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="People count" Type="integer" Nullable="false" />
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Booking_0_0">
+          <End Role="Payment type" Type="Self.Payment type" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="Payment type id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_1_0">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="Client id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Client_0_0">
           <End Role="Client type" Type="Self.Client type" Multiplicity="1" />
           <End Role="Client" Type="Self.Client" Multiplicity="*" />
@@ -140,6 +187,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Tour booking_0_0">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="Tour booking" Type="Self.Tour booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tour booking">
+              <PropertyRef Name="Tour id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour booking_1_0">
+          <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
+          <End Role="Tour booking" Type="Self.Tour booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tour booking">
+              <PropertyRef Name="Booking id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tour_0_0">
           <End Role="Feeding" Type="Self.Feeding" Multiplicity="1" />
           <End Role="Tour" Type="Self.Tour" Multiplicity="*" />
@@ -165,14 +236,25 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище mainModelContainer">
+          <EntitySet Name="Booking" EntityType="Self.Booking" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" store:Type="Tables" />
           <EntitySet Name="Client type" EntityType="Self.Client type" store:Type="Tables" />
           <EntitySet Name="Feeding" EntityType="Self.Feeding" store:Type="Tables" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" store:Type="Tables" />
           <EntitySet Name="Manager" EntityType="Self.Manager" store:Type="Tables" />
+          <EntitySet Name="Payment type" EntityType="Self.Payment type" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" store:Type="Tables" />
           <EntitySet Name="Tour" EntityType="Self.Tour" store:Type="Tables" />
+          <EntitySet Name="Tour booking" EntityType="Self.Tour booking" store:Type="Tables" />
+          <AssociationSet Name="FK_Booking_0_0" Association="Self.FK_Booking_0_0">
+            <End Role="Payment type" EntitySet="Payment type" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_1_0" Association="Self.FK_Booking_1_0">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
           <AssociationSet Name="FK_Client_0_0" Association="Self.FK_Client_0_0">
             <End Role="Client type" EntitySet="Client type" />
             <End Role="Client" EntitySet="Client" />
@@ -193,6 +275,14 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="Manager" EntitySet="Manager" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tour booking_0_0" Association="Self.FK_Tour booking_0_0">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="Tour booking" EntitySet="Tour booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour booking_1_0" Association="Self.FK_Tour booking_1_0">
+            <End Role="Booking" EntitySet="Booking" />
+            <End Role="Tour booking" EntitySet="Tour booking" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tour_0_0" Association="Self.FK_Tour_0_0">
             <End Role="Feeding" EntitySet="Feeding" />
             <End Role="Tour" EntitySet="Tour" />
@@ -207,6 +297,17 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="mainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_id" Type="Int64" Nullable="false" />
+          <Property Name="Payment_type_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Payment_type" Relationship="Self.FK_Booking_0_0" FromRole="Booking" ToRole="Payment_type" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Booking_1_0" FromRole="Booking" ToRole="Client" />
+          <NavigationProperty Name="Tour_booking" Relationship="Self.FK_Tour_booking_1_0" FromRole="Booking" ToRole="Tour_booking" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -216,6 +317,7 @@
           <Property Name="Last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Manager_id" Type="Int64" Nullable="false" />
           <Property Name="Type_id" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK_Booking_1_0" FromRole="Client" ToRole="Booking" />
           <NavigationProperty Name="Client_type" Relationship="Self.FK_Client_0_0" FromRole="Client" ToRole="Client_type" />
           <NavigationProperty Name="Manager" Relationship="Self.FK_Client_1_0" FromRole="Client" ToRole="Manager" />
         </EntityType>
@@ -264,6 +366,14 @@
           <NavigationProperty Name="Hotel" Relationship="Self.FK_Hotel_0_0" FromRole="Manager" ToRole="Hotel" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Manager_0_0" FromRole="Manager" ToRole="Role" />
         </EntityType>
+        <EntityType Name="Payment_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK_Booking_0_0" FromRole="Payment_type" ToRole="Booking" />
+        </EntityType>
         <EntityType Name="Region">
           <Key>
             <PropertyRef Name="Id" />
@@ -293,7 +403,56 @@
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Feeding" Relationship="Self.FK_Tour_0_0" FromRole="Tour" ToRole="Feeding" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK_Tour_1_0" FromRole="Tour" ToRole="Hotel" />
+          <NavigationProperty Name="Tour_booking" Relationship="Self.FK_Tour_booking_0_0" FromRole="Tour" ToRole="Tour_booking" />
         </EntityType>
+        <EntityType Name="Tour_booking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Booking_id" Type="Int64" Nullable="false" />
+          <Property Name="Tour_id" Type="Int64" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="People_count" Type="Int64" Nullable="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK_Tour_booking_1_0" FromRole="Tour_booking" ToRole="Booking" />
+          <NavigationProperty Name="Tour" Relationship="Self.FK_Tour_booking_0_0" FromRole="Tour_booking" ToRole="Tour" />
+        </EntityType>
+        <Association Name="FK_Booking_0_0">
+          <End Role="Payment_type" Type="Self.Payment_type" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="Payment_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Booking_1_0">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="Client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tour_booking_1_0">
+          <End Role="Booking" Type="Self.Booking" Multiplicity="1" />
+          <End Role="Tour_booking" Type="Self.Tour_booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Booking">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tour_booking">
+              <PropertyRef Name="Booking_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Client_0_0">
           <End Role="Client_type" Type="Self.Client_type" Multiplicity="1" />
           <End Role="Client" Type="Self.Client" Multiplicity="*" />
@@ -378,15 +537,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="mainEntities" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Tour_booking_0_0">
+          <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
+          <End Role="Tour_booking" Type="Self.Tour_booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tour">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tour_booking">
+              <PropertyRef Name="Tour_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TourismEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Booking" EntityType="Self.Booking" />
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Client_type" EntityType="Self.Client_type" />
           <EntitySet Name="Feeding" EntityType="Self.Feeding" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" />
           <EntitySet Name="Manager" EntityType="Self.Manager" />
+          <EntitySet Name="Payment_type" EntityType="Self.Payment_type" />
           <EntitySet Name="Region" EntityType="Self.Region" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="Tour" EntityType="Self.Tour" />
+          <EntitySet Name="Tour_booking" EntityType="Self.Tour_booking" />
+          <AssociationSet Name="FK_Booking_0_0" Association="Self.FK_Booking_0_0">
+            <End Role="Payment_type" EntitySet="Payment_type" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Booking_1_0" Association="Self.FK_Booking_1_0">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tour_booking_1_0" Association="Self.FK_Tour_booking_1_0">
+            <End Role="Booking" EntitySet="Booking" />
+            <End Role="Tour_booking" EntitySet="Tour_booking" />
+          </AssociationSet>
           <AssociationSet Name="FK_Client_0_0" Association="Self.FK_Client_0_0">
             <End Role="Client_type" EntitySet="Client_type" />
             <End Role="Client" EntitySet="Client" />
@@ -415,13 +601,26 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="Manager" EntitySet="Manager" />
           </AssociationSet>
+          <AssociationSet Name="FK_Tour_booking_0_0" Association="Self.FK_Tour_booking_0_0">
+            <End Role="Tour" EntitySet="Tour" />
+            <End Role="Tour_booking" EntitySet="Tour_booking" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище mainModelContainer" CdmEntityContainer="mainEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище mainModelContainer" CdmEntityContainer="TourismEntities">
+          <EntitySetMapping Name="Booking">
+            <EntityTypeMapping TypeName="mainModel.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Client_id" ColumnName="Client id" />
+                <ScalarProperty Name="Payment_type_id" ColumnName="Payment type id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="mainModel.Client">
               <MappingFragment StoreEntitySet="Client">
@@ -474,6 +673,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Payment_type">
+            <EntityTypeMapping TypeName="mainModel.Payment_type">
+              <MappingFragment StoreEntitySet="Payment type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Region">
             <EntityTypeMapping TypeName="mainModel.Region">
               <MappingFragment StoreEntitySet="Region">
@@ -500,6 +707,17 @@
                 <ScalarProperty Name="Feeding_id" ColumnName="Feeding id" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tour_booking">
+            <EntityTypeMapping TypeName="mainModel.Tour_booking">
+              <MappingFragment StoreEntitySet="Tour booking">
+                <ScalarProperty Name="Booking_id" ColumnName="Booking id" />
+                <ScalarProperty Name="Tour_id" ColumnName="Tour id" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="People_count" ColumnName="People count" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
