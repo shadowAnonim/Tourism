@@ -46,7 +46,7 @@ namespace Tourism
         {
             if (tourDataGrid.SelectedItem == null)
             {
-                MessageBox.Show("Выберите отель");
+                MessageBox.Show("Выберите тур");
                 return;
             }
             Tour selected = tourDataGrid.SelectedItem as Tour;
@@ -57,10 +57,10 @@ namespace Tourism
         {
             if (tourDataGrid.SelectedItem == null)
             {
-                MessageBox.Show("Выберите отель");
+                MessageBox.Show("Выберите тур");
                 return;
             }
-            if (MessageBox.Show("Вы точно хотите удалить этот отель?",
+            if (MessageBox.Show("Вы точно хотите удалить этот тур?",
                 "Подтвердите удаление", MessageBoxButton.YesNo,
                 MessageBoxImage.Question) == MessageBoxResult.Yes)
             {

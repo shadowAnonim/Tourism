@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,6 +50,11 @@ namespace Tourism
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (!Regex.Match(phoneTextBox.Text, @"/^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/").Success)
+            {
+                Utils.Error("Некоректный формат телефона");
+                return;
+            }
             try
             {
                 if (!edit)

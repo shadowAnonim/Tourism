@@ -27,7 +27,13 @@
                 <DataGridTextColumn x:Name="managerIdColumn" Binding="{Binding Manager.LastName}" Header="Управляющий" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="phoneColumn" Binding="{Binding Phone}" Header="Телефон" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="regionIdColumn" Binding="{Binding Region.Name}" Header="Регион" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Описание"/>
+                <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Описание" Width="SizeToCells">
+                    <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
