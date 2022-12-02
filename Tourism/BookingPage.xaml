@@ -30,6 +30,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="people_countColumn" Binding="{Binding People_count}" Header="Количество человек" Width="SizeToHeader"/>
                         <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Цена" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="totalColumn" Binding="{Binding Total}" Header="Цена" Width="SizeToHeader"/>
                         <DataGridTextColumn x:Name="tour_idColumn" Binding="{Binding Tour_id}" Header="Тур" Width="SizeToCells" IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
