@@ -37,7 +37,7 @@
                 <Label Grid.Column="0" Content="Отель:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
                 <ComboBox x:Name="hotel_idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" SelectedItem="{Binding Hotel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" DisplayMemberPath="Name"/>
                 <Label Grid.Column="0" Content="Стоимость:" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-                <TextBox x:Name="priceTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="6" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" AcceptsReturn="True" TextWrapping="Wrap"/>
+                <TextBox x:Name="priceTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="6" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             </Grid>
             <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>
         </StackPanel>

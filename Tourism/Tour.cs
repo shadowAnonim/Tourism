@@ -27,6 +27,7 @@ namespace Tourism
         public long Feeding_id { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
+        public string Name { get; set; }
     
         public virtual Feeding Feeding { get; set; }
         public virtual Hotel Hotel { get; set; }
