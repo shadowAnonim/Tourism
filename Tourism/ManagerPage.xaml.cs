@@ -60,7 +60,8 @@ namespace Tourism
                 return;
             }
 
-            if (!Regex.IsMatch(phoneTextBox.Text, @"/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"))
+            var match = Regex.Match(phoneTextBox.Text, @"\+?\d{1,3}\s?\(\d{1,5}\)[\d\s-]+");
+            if (!match.Success || match.Value.Length != phoneTextBox.Text.Length)
             {
                 Utils.Error("Некоректный формат телефона");
                 return;

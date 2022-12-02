@@ -103,6 +103,7 @@
     <Compile Include="ClientTypesPage.xaml.cs">
       <DependentUpon>ClientTypesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ClientView.cs" />
     <Compile Include="Client_type.cs">
       <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>
@@ -182,6 +183,7 @@
     <Compile Include="ToursPage.xaml.cs">
       <DependentUpon>ToursPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TourView.cs" />
     <Compile Include="Tour_booking.cs">
       <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>

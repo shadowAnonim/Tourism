@@ -58,7 +58,7 @@ namespace Tourism
                 Utils.Error("Дата прибытия и дата выезда не могут быть одним днём");
                 return;
             }
-            if (arrival_dateDatePicker.SelectedDate.Value < DateTime.Now)
+            if (arrival_dateDatePicker.SelectedDate.Value.Date < DateTime.Now.Date)
             {
                 Utils.Error("Неверно выбрана дата прибытия");
                 return;
