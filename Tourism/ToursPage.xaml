@@ -24,11 +24,12 @@
         <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" Click="deleteBtn_Click" BorderBrush="Red" BorderThickness="3"/>
         <DataGrid x:Name="tourDataGrid"  Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3">
             <DataGrid.Columns>
+                <DataGridTextColumn x:Name="tour_name" Binding="{Binding Name}" Header="Название" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="hotel_idColumn" Binding="{Binding Hotel.Name}" Header="Отель" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="arrival_date" Binding="{Binding Arrival_date, StringFormat=d}" Header="Дата прибытия" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="departure_date" Binding="{Binding Departure_date, StringFormat=d}" Header="Дата выезда" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="daysColumn" Binding="{Binding Days}" Header="Количетво дней" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Стоимость" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="daysColumn" Binding="{Binding Days}" Header="Количетво дней" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Стоимость" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="feeding_idColumn" Binding="{Binding Feeding.Type}" Header="Тип питания" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Описание" Width="SizeToCells">
                     <DataGridTextColumn.ElementStyle>

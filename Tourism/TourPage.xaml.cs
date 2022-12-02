@@ -100,5 +100,10 @@ namespace Tourism
                 departure_dateDatePicker.SelectedDate = DateTime.Now.AddDays(1);
             }
         }
+
+        private void arrival_dateDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            daysTextBox.Content = tour.Days.ToString();
         }
+    }
     }
