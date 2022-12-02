@@ -89,6 +89,7 @@ namespace Tourism
                 return;
             }
             booking.Tour_booking.Add(new Tour_booking() { Booking = booking, People_count = count, Price = price, Tour = selected });
+            bookingGrid.DataContext = null;
             bookingGrid.DataContext = booking;
         }
 
@@ -102,9 +103,9 @@ namespace Tourism
             try
             {
                 Tour_booking selected = tour_bookingDataGrid.SelectedItem as Tour_booking;
+                Utils.db.Tour_booking.Remove(selected);
                 booking.Tour_booking.Remove(selected);
                 bookingGrid.DataContext = null;
-                tour_bookingDataGrid.ItemsSource = null;
                 bookingGrid.DataContext = booking;
             }
             catch (Exception ex)

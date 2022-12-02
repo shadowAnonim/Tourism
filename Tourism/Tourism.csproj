@@ -148,6 +148,7 @@
     <Compile Include="ManagersPage.xaml.cs">
       <DependentUpon>ManagersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ManagerView.cs" />
     <Compile Include="Payment_type.cs">
       <DependentUpon>DbMOdel.tt</DependentUpon>
     </Compile>

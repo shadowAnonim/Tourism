@@ -24,7 +24,7 @@
         <DataGrid x:Name="hotelDataGrid" Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Название" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="managerIdColumn" Binding="{Binding Manager.LastName}" Header="Управляющий" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="managerIdColumn" Binding="{Binding Manager.FullName}" Header="Управляющий" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="phoneColumn" Binding="{Binding Phone}" Header="Телефон" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="regionIdColumn" Binding="{Binding Region.Name}" Header="Регион" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Описание" Width="SizeToCells">
