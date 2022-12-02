@@ -22,7 +22,7 @@
                     <RowDefinition Height="200"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" Content="Клиент:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                <ComboBox x:Name="client_idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" SelectedItem="{Binding Client, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" DisplayMemberPath="Last_name"/>
+                <ComboBox x:Name="client_idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" SelectedItem="{Binding Client, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" DisplayMemberPath="FullName"/>
                 <Label Grid.Column="0" Content="Тип оплаты:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
                 <ComboBox x:Name="payment_type_idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="1" SelectedItem="{Binding Payment_type, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" DisplayMemberPath="Type"/>
                 <Label Grid.Row="2" Content="Туры:" HorizontalAlignment="Left"/>

@@ -50,7 +50,7 @@ namespace Tourism
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
-            var match = Regex.Match(phoneTextBox.Text, @"\+?\d{1,3}\(\d{1,5}\)[\d\s-]+");
+            var match = Regex.Match(phoneTextBox.Text, @"\+?\d{1,3}\s?\(\d{1,5}\)[\d\s-]+");
             if (!match.Success || match.Value.Length != phoneTextBox.Text.Length)
             {
                 Utils.Error("Некоректный формат телефона");

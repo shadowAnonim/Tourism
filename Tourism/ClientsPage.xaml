@@ -25,7 +25,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="first_nameColumn" Binding="{Binding First_name}" Header="Имя" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="last_nameColumn" Binding="{Binding Last_name}" Header="Фамилия" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="manager_idColumn" Binding="{Binding Manager.LastName}" Header="Контактное лицо" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="manager_idColumn" Binding="{Binding Manager.FullName}" Header="Контактное лицо" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="manager_phoneColumn" Binding="{Binding Manager.Phone}" Header="Телефон контактного лица" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="type_idColumn" Binding="{Binding Client_type.Type}" Header="Тип клиента" Width="SizeToCells"/>
             </DataGrid.Columns>
         </DataGrid>

@@ -24,7 +24,7 @@
         <DataGrid x:Name="bookingDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Номер закзаза" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="client_idColumn" Binding="{Binding Client.Last_name}" Header="Клиент" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="client_idColumn" Binding="{Binding Client.FullName}" Header="Клиент" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="payment_type_idColumn" Binding="{Binding Payment_type.Type}" Header="Тип оплаты" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>

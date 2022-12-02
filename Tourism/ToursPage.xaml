@@ -27,6 +27,7 @@
                 <DataGridTextColumn x:Name="hotel_idColumn" Binding="{Binding Hotel.Name}" Header="Отель" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="arrival_date" Binding="{Binding Arrival_date, StringFormat=d}" Header="Дата прибытия" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="departure_date" Binding="{Binding Departure_date, StringFormat=d}" Header="Дата выезда" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="daysColumn" Binding="{Binding Days}" Header="Количетво дней" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Стоимость" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="feeding_idColumn" Binding="{Binding Feeding.Type}" Header="Тип питания" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Описание" Width="SizeToCells">
