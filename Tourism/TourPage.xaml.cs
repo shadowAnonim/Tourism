@@ -68,6 +68,13 @@ namespace Tourism
                 Utils.Error("Дата выезда не может быть раньше даты прибытия");
                 return;
             }
+
+            if (descriptionTextBox.Text.Length > 500)
+            {
+                Utils.Error("Слишком длинное описание");
+                return;
+            }
+
             try
             {
                 if (!edit)

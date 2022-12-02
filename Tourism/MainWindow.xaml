@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tourism"
         mc:Ignorable="d"
+        
         Title="MainWindow" Height="600" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,6 +20,7 @@
         <StackPanel>
             <Button x:Name="backBtn" Content="Назад" Click="backBtn_Click"/>
         </StackPanel>
+        <Image x:Name="Icon" Grid.Row="0" Grid.Column="2" Height="150" Source="C:\Users\User\source\repos\Tourism\Tourism\1cLogo.jpg"/>
         <Label x:Name="titleLbl" Grid.Column="1" Content="title" FontSize="20" FontWeight="Bold"/>
         <Frame x:Name="frame" Grid.Row="1" Grid.ColumnSpan="3" NavigationUIVisibility="Hidden" Source="/MainPage.xaml" Navigated="frame_Navigated"/>
         

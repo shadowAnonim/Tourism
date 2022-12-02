@@ -56,6 +56,19 @@ namespace Tourism
                 Utils.Error("Некоректный формат телефона");
                 return;
             }
+
+            if(nameTextBox.Text.Length > 200)
+            {
+                Utils.Error("Слишком длинное название");
+                return;
+            }
+
+            if(descriptionTextBox.Text.Length > 500)
+            {
+                Utils.Error("Слишком длинное описание");
+                return;
+            }
+
             try
             {
                 if (!edit)
