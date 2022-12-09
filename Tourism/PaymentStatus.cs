@@ -17,13 +17,13 @@ namespace Tourism
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PaymentStatus()
         {
-            this.Payment = new HashSet<Payment>();
+            this.Booking = new HashSet<Booking>();
         }
     
         public long Id { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment> Payment { get; set; }
+        public virtual ICollection<Booking> Booking { get; set; }
     }
 }

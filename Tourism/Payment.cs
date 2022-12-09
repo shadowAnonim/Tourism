@@ -15,9 +15,10 @@ namespace Tourism
     public partial class Payment
     {
         public long Id { get; set; }
+        public long BookingId { get; set; }
         public decimal Amount { get; set; }
-        public long StatusId { get; set; }
+        public bool ReservationConfirmed { get; set; }
     
-        public virtual PaymentStatus PaymentStatus { get; set; }
+        public virtual Booking Booking { get; set; }
     }
 }

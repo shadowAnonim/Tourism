@@ -13,10 +13,10 @@ namespace Tourism
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TourismEntities : DbContext
+    public partial class mainEntities1 : DbContext
     {
-        public TourismEntities()
-            : base("name=TourismEntities")
+        public mainEntities1()
+            : base("name=mainEntities1")
         {
         }
     
