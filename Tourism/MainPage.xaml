@@ -9,16 +9,28 @@
       Title="Главное меню">
 
     <Grid>
-        <StackPanel>
-            <Button x:Name="hotelsBtn" Content="Отели" Click="hotelsBtn_Click"/>
-            <Button x:Name="regionsBtn" Content="Регионы" Click="regionsBtn_Click"/>
-            <Button x:Name="personalBtn" Content="Управляющие" Click="personalBtn_Click"/>
-            <Button x:Name="rolesBtn" Content="Роли" Click="rolesBtn_Click"/>
-            <Button x:Name="toursBtn" Content="Туры" Click="toursBtn_Click"/>
-            <Button x:Name="feedingBtn" Content="Типы питания" Click="feedingBtn_Click"/>
-            <Button x:Name="clientsBtn" Content="Клиенты" Click="clientsBtn_Click"/>
-            <Button x:Name="clientTypesBtn" Content="Типы клиентов" Click="clientTypesBtn_Click"/>
-            <Button x:Name="bookingsBtn" Content="Заказы" Click="bookingsBtn_Click"/>
+        <StackPanel Orientation="Horizontal">
+            <GroupBox Header="Информация об отелях">
+                <StackPanel>
+                    <Button x:Name="hotelsBtn" Content="Отели" Click="hotelsBtn_Click"/>
+                    <Button x:Name="regionsBtn" Content="Регионы" Click="regionsBtn_Click"/>
+                    <Button x:Name="personalBtn" Content="Управляющие" Click="personalBtn_Click"/>
+                    <Button x:Name="rolesBtn" Content="Роли" Click="rolesBtn_Click"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Информация о турах">
+                <StackPanel>
+                    <Button x:Name="toursBtn" Content="Туры" Click="toursBtn_Click"/>
+                    <Button x:Name="feedingBtn" Content="Типы питания" Click="feedingBtn_Click"/>
+                    <Button x:Name="clientsBtn" Content="Клиенты" Click="clientsBtn_Click"/>
+                    <Button x:Name="clientTypesBtn" Content="Типы клиентов" Click="clientTypesBtn_Click"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Информация о заказах">
+                <StackPanel>
+                    <Button x:Name="bookingsBtn" Content="Заказы" Click="bookingsBtn_Click"/>
+                </StackPanel>
+            </GroupBox>
         </StackPanel>
     </Grid>
 </Page>
