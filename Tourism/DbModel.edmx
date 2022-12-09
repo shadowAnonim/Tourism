@@ -60,12 +60,30 @@
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RoleId" Type="integer" Nullable="false" />
         </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6005: Тип данных "" в настоящее время не поддерживается для целевой версии платформы Entity Framework; столбец "BookingId" в таблице "main.Payment" был исключен.
+предупреждение 6005: Тип данных "" в настоящее время не поддерживается для целевой версии платформы Entity Framework; столбец "ReservationConfirmed" в таблице "main.Payment" был исключен.-->
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="StatusId" Type="integer" Nullable="false" />
+        </EntityType>
         <EntityType Name="Payment type">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Type" Type="varchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -188,6 +206,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Payment_0_0">
+          <End Role="PaymentStatus" Type="Self.PaymentStatus" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tour booking_0_0">
           <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
           <End Role="Tour booking" Type="Self.Tour booking" Multiplicity="*" />
@@ -243,7 +273,9 @@
           <EntitySet Name="Feeding" EntityType="Self.Feeding" store:Type="Tables" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" store:Type="Tables" />
           <EntitySet Name="Manager" EntityType="Self.Manager" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" store:Type="Tables" />
           <EntitySet Name="Payment type" EntityType="Self.Payment type" store:Type="Tables" />
+          <EntitySet Name="PaymentStatus" EntityType="Self.PaymentStatus" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" store:Type="Tables" />
           <EntitySet Name="Tour" EntityType="Self.Tour" store:Type="Tables" />
@@ -275,6 +307,10 @@
           <AssociationSet Name="FK_Manager_0_0" Association="Self.FK_Manager_0_0">
             <End Role="Role" EntitySet="Role" />
             <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_0_0" Association="Self.FK_Payment_0_0">
+            <End Role="PaymentStatus" EntitySet="PaymentStatus" />
+            <End Role="Payment" EntitySet="Payment" />
           </AssociationSet>
           <AssociationSet Name="FK_Tour booking_0_0" Association="Self.FK_Tour booking_0_0">
             <End Role="Tour" EntitySet="Tour" />
@@ -367,6 +403,15 @@
           <NavigationProperty Name="Hotel" Relationship="Self.FK_Hotel_0_0" FromRole="Manager" ToRole="Hotel" />
           <NavigationProperty Name="Role" Relationship="Self.FK_Manager_0_0" FromRole="Manager" ToRole="Role" />
         </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="StatusId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="PaymentStatus" Relationship="Self.FK_Payment_0_0" FromRole="Payment" ToRole="PaymentStatus" />
+        </EntityType>
         <EntityType Name="Payment_type">
           <Key>
             <PropertyRef Name="id" />
@@ -374,6 +419,14 @@
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Type" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Booking" Relationship="Self.FK_Booking_0_0" FromRole="Payment_type" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="PaymentStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK_Payment_0_0" FromRole="PaymentStatus" ToRole="Payment" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -539,6 +592,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Payment_0_0">
+          <End Role="PaymentStatus" Type="Self.PaymentStatus" Multiplicity="1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Tour_booking_0_0">
           <End Role="Tour" Type="Self.Tour" Multiplicity="1" />
           <End Role="Tour_booking" Type="Self.Tour_booking" Multiplicity="*" />
@@ -551,14 +616,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="mainEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TourismEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Booking" EntityType="Self.Booking" />
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Client_type" EntityType="Self.Client_type" />
           <EntitySet Name="Feeding" EntityType="Self.Feeding" />
           <EntitySet Name="Hotel" EntityType="Self.Hotel" />
           <EntitySet Name="Manager" EntityType="Self.Manager" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" />
           <EntitySet Name="Payment_type" EntityType="Self.Payment_type" />
+          <EntitySet Name="PaymentStatus" EntityType="Self.PaymentStatus" />
           <EntitySet Name="Region" EntityType="Self.Region" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="Tour" EntityType="Self.Tour" />
@@ -603,6 +670,10 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="Manager" EntitySet="Manager" />
           </AssociationSet>
+          <AssociationSet Name="FK_Payment_0_0" Association="Self.FK_Payment_0_0">
+            <End Role="PaymentStatus" EntitySet="PaymentStatus" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
           <AssociationSet Name="FK_Tour_booking_0_0" Association="Self.FK_Tour_booking_0_0">
             <End Role="Tour" EntitySet="Tour" />
             <End Role="Tour_booking" EntitySet="Tour_booking" />
@@ -613,7 +684,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище mainModelContainer" CdmEntityContainer="mainEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище mainModelContainer" CdmEntityContainer="TourismEntities">
           <EntitySetMapping Name="Booking">
             <EntityTypeMapping TypeName="mainModel.Booking">
               <MappingFragment StoreEntitySet="Booking">
@@ -675,11 +746,28 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Payment">
+            <EntityTypeMapping TypeName="mainModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Payment_type">
             <EntityTypeMapping TypeName="mainModel.Payment_type">
               <MappingFragment StoreEntitySet="Payment type">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentStatus">
+            <EntityTypeMapping TypeName="mainModel.PaymentStatus">
+              <MappingFragment StoreEntitySet="PaymentStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

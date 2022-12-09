@@ -154,6 +154,12 @@
       <DependentUpon>ManagersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerView.cs" />
+    <Compile Include="Payment.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentStatus.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Payment_type.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
@@ -327,8 +333,8 @@
   <ItemGroup>
     <Content Include="DbModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DbModel.Context.cs</LastGenOutput>
       <DependentUpon>DbModel.edmx</DependentUpon>
+      <LastGenOutput>DbModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="DbModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
