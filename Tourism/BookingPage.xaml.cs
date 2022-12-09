@@ -83,7 +83,7 @@ namespace Tourism
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
             Tour selected = toursCb.SelectedItem as Tour;
-            if (!int.TryParse(countTb.Text, out int count) || !int.TryParse(priceTb.Text, out int price))
+            if (!int.TryParse(countTb.Text, out int count) || !decimal.TryParse(priceTb.Text, out decimal price))
             {
                 Utils.Error("Поля должны иметь числовое значение");
                 return;

@@ -43,7 +43,10 @@
                 <Label Grid.Column="0" Content="Отель:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
                 <ComboBox x:Name="hotel_idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="4" SelectedItem="{Binding Hotel, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" DisplayMemberPath="Name"/>
                 <Label Grid.Column="0" Content="Стоимость:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-                <TextBox x:Name="priceTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left">
+                    <TextBox x:Name="priceTextBox"  HorizontalAlignment="Left" Margin="3,0,0,0"  Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="руб."/>
+                </StackPanel>
             </Grid>
             <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>
         </StackPanel>
