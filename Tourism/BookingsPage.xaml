@@ -16,12 +16,22 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Button x:Name="addBtn" Content="Добавить" Grid.Column="0" Click="addBtn_Click"/>
         <Button x:Name="editBtn" Content="Редактировать" Grid.Column="1" Click="editBtn_Click"/>
         <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" Click="deleteBtn_Click" BorderBrush="Red" BorderThickness="3"/>
-        <DataGrid x:Name="bookingDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3" Grid.Row="1">
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <Label Content="Статус заказа"/>
+            <ComboBox x:Name="statusCb" SelectionChanged="statusCb_SelectionChanged" DisplayMemberPath="Name"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">    
+            <Button x:Name="payBtn" Content="Оплатить" Click="editBtn_Click"/>
+            <Button x:Name="sellBtn" Content="Продать" Click="sellBtn_Click"/>
+        </StackPanel>
+        <Button x:Name="cancelBtn" Content="Отменить" Grid.Column="2" Click="cancelBtn_Click" BorderBrush="Red" BorderThickness="3" Grid.Row="1"/>
+        <DataGrid x:Name="bookingDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3" Grid.Row="2">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Номер закзаза" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="client_idColumn" Binding="{Binding Client.FullName}" Header="Клиент" Width="SizeToHeader"/>
