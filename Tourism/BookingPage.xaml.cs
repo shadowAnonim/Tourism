@@ -53,7 +53,11 @@ namespace Tourism
             try
             {
                 if (!edit)
+                {
+                    booking.StatusId = 1;
+                    booking.Date = DateTime.Now;
                     Utils.db.Booking.Add(booking);
+                }
                 Utils.db.SaveChanges();
                 NavigationService.GoBack();
 

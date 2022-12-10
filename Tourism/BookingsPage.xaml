@@ -37,6 +37,7 @@
                 <DataGridTextColumn x:Name="client_idColumn" Binding="{Binding Client.FullName}" Header="Клиент" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="payment_type_idColumn" Binding="{Binding Payment_type.Type}" Header="Тип оплаты" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="totalColumn" Binding="{Binding Total, StringFormat={}{0} руб.}" Header="Сумма" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="statusColumn" Binding="{Binding PaymentStatus.Name}" Header="Статус" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
