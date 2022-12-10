@@ -13,10 +13,10 @@ namespace Tourism
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class mainEntities1 : DbContext
+    public partial class TourismEntities : DbContext
     {
-        public mainEntities1()
-            : base("name=mainEntities1")
+        public TourismEntities()
+            : base("name=TourismEntities")
         {
         }
     
@@ -36,7 +36,9 @@ namespace Tourism
         public virtual DbSet<PaymentStatus> PaymentStatus { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Sell> Sell { get; set; }
         public virtual DbSet<Tour> Tour { get; set; }
         public virtual DbSet<Tour_booking> Tour_booking { get; set; }
+        public virtual DbSet<TourSell> TourSell { get; set; }
     }
 }

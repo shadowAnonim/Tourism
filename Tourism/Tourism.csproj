@@ -181,11 +181,17 @@
     <Compile Include="RolesPage.xaml.cs">
       <DependentUpon>RolesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Sell.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Tour.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TourPage.xaml.cs">
       <DependentUpon>TourPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TourSell.cs">
+      <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ToursPage.xaml.cs">
       <DependentUpon>ToursPage.xaml</DependentUpon>

@@ -18,12 +18,14 @@ namespace Tourism
         public Booking()
         {
             this.Payment = new HashSet<Payment>();
+            this.Sell = new HashSet<Sell>();
             this.Tour_booking = new HashSet<Tour_booking>();
         }
     
         public long Id { get; set; }
         public long Client_id { get; set; }
         public long Payment_type_id { get; set; }
+        public System.DateTime Date { get; set; }
         public long StatusId { get; set; }
     
         public virtual PaymentStatus PaymentStatus { get; set; }
@@ -31,6 +33,8 @@ namespace Tourism
         public virtual Client Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Payment> Payment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sell> Sell { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tour_booking> Tour_booking { get; set; }
     }
