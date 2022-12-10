@@ -147,6 +147,11 @@ namespace Tourism
                 return;
             }
             Booking selected = bookingDataGrid.SelectedItem as Booking;
+            if (selected.StatusId == 2)
+            {
+                MessageBox.Show("Этот заказ уже отменён");
+                return;
+            }
             if (selected.Payment.Count > 0)
             {
                 MessageBox.Show("Этот заказ уже оплачен");
