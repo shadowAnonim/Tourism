@@ -12,26 +12,18 @@ namespace Tourism
     using System;
     using System.Collections.Generic;
     
-    public partial class Booking
+    public partial class PaymentStatus
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Booking()
+        public PaymentStatus()
         {
-            this.Payment = new HashSet<Payment>();
-            this.Tour_booking = new HashSet<Tour_booking>();
+            this.Booking = new HashSet<Booking>();
         }
     
         public long Id { get; set; }
-        public long Client_id { get; set; }
-        public long Payment_type_id { get; set; }
-        public long StatusId { get; set; }
+        public string Name { get; set; }
     
-        public virtual PaymentStatus PaymentStatus { get; set; }
-        public virtual Payment_type Payment_type { get; set; }
-        public virtual Client Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment> Payment { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tour_booking> Tour_booking { get; set; }
+        public virtual ICollection<Booking> Booking { get; set; }
     }
 }

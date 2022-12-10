@@ -20,6 +20,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="200"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Column="0" Content="Клиент:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
                 <ComboBox x:Name="client_idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" SelectedItem="{Binding Client, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" DisplayMemberPath="FullName"/>
@@ -30,10 +31,15 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="tour_idColumn" Binding="{Binding Tour.Name}" Header="Тур" Width="SizeToCells" IsReadOnly="True"/>
                         <DataGridTextColumn x:Name="people_countColumn" Binding="{Binding People_count}" Header="Количество человек" Width="SizeToHeader"/>
-                        <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Цена" Width="SizeToHeader"/>
-                        <DataGridTextColumn x:Name="totalColumn" Binding="{Binding Total}" Header="Цена" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price, StringFormat={}{0} руб.}" Header="Цена" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="totalColumn" Binding="{Binding Total, StringFormat={}{0} руб.}" Header="Сумма" Width="SizeToHeader"/>
                     </DataGrid.Columns>
                 </DataGrid>
+                <Label Content="Сумма:" Grid.Row="4" HorizontalAlignment="Right"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Left">
+                    <Label x:Name="totalLbl" Grid.Row="4" HorizontalAlignment="Left" Grid.Column="1" Content="{Binding Total}"/>
+                    <Label Content="руб."/>
+                </StackPanel>
             </Grid>
             <StackPanel Orientation="Horizontal">
                 <StackPanel>
@@ -48,6 +54,7 @@
                     <Label Content="Цена:" HorizontalAlignment="Left"/>
                     <TextBox x:Name="priceTb"/>
                 </StackPanel>
+                <Label Content="руб."/>
                 <Button x:Name="addBtn" Content="Добавить тур" Click="addBtn_Click"/>
                 <Button x:Name="removeBtn" Content="Убрать тур" Click="removeBtn_Click"/>
             </StackPanel>

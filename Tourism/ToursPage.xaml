@@ -29,7 +29,7 @@
                 <DataGridTextColumn x:Name="arrival_date" Binding="{Binding Arrival_date, StringFormat=d}" Header="Дата прибытия" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="departure_date" Binding="{Binding Departure_date, StringFormat=d}" Header="Дата выезда" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="daysColumn" Binding="{Binding Days}" Header="Количетво дней" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Стоимость" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price,StringFormat={}{0} руб.}" Header="Стоимость" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="feeding_idColumn" Binding="{Binding Feeding.Type}" Header="Тип питания" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="descriptionColumn" Binding="{Binding Description}" Header="Описание" Width="SizeToCells">
                     <DataGridTextColumn.ElementStyle>

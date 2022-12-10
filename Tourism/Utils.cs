@@ -9,7 +9,7 @@ namespace Tourism
 {
     public static class Utils
     {
-        public static mainEntities db = new mainEntities();
+        public static mainEntities1 db = new mainEntities1();
 
         public static void Error(string text)
         {
