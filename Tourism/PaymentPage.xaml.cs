@@ -41,7 +41,10 @@ namespace Tourism
                     edit = true;
                 }
                 paymentGrid.DataContext = this.payment;
+<<<<<<< Updated upstream
                 amountTextBox.Text = this.payment.Booking.Total.ToString();
+=======
+>>>>>>> Stashed changes
             }
             catch (Exception ex)
             {
@@ -67,10 +70,13 @@ namespace Tourism
                 Utils.Error(ex.Message);
             }
         }
+<<<<<<< Updated upstream
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
+=======
+>>>>>>> Stashed changes
     }
 }

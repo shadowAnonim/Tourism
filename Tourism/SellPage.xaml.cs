@@ -25,6 +25,7 @@ namespace Tourism
 
         Sell sell;
         bool edit = false;
+        List<TourSell> tours;
         public SellPage(Sell sell = null)
         {
             InitializeComponent();
@@ -40,7 +41,6 @@ namespace Tourism
                     edit = true;
                 }
                 sellGrid.DataContext = this.sell;
-                bookingIdTextBox.ItemsSource = Utils.db.Booking.ToList();
             }
             catch (Exception ex)
             {
@@ -64,10 +64,49 @@ namespace Tourism
             }
         }
 
+        private void toursCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Tour selected = toursCb.SelectedItem as Tour;
+            priceTb.Text = selected.Price.ToString();
+        }
+
+        private void addBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Tour selected = toursCb.SelectedItem as Tour;
+            if (!int.TryParse(countTb.Text, out int count) || !decimal.TryParse(priceTb.Text, out decimal price))
+            {
+                Utils.Error("Поля должны иметь числовое значение");
+                return;
+            }
+            sell.TourSell.Add(new TourSell() { Sell = sell, People_count = count, Price = price, Tour = selected });
+            sellGrid.DataContext = null;
+            sellGrid.DataContext = sell;
+        }
+
+        private void removeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (tour_sellDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите тур");
+                return;
+            }
+            try
+            {
+                TourSell selected = tour_sellDataGrid.SelectedItem as TourSell;
+                Utils.db.TourSell.Remove(selected);
+                sell.TourSell.Remove(selected);
+                sellGrid.DataContext = null;
+                sellGrid.DataContext = sell;
+            }
+            catch (Exception ex)
+            {
+                Utils.Error(ex.Message);
+            }
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!edit)
-                bookingIdTextBox.SelectedIndex = 0;
+            toursCb.SelectedIndex = 0;
         }
     }
 }

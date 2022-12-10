@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Tourism
 {
     /// <summary>
-    /// Логика взаимодействия для PaymentPage.xaml
+    /// Логика взаимодействия для SellPage.xaml
     /// </summary>
-    public partial class PaymentsPage : Page
+    public partial class SellsPage : Page
     {
-        public PaymentsPage()
+        public SellsPage()
         {
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace Tourism
         {
             try
             {
-                paymentDataGrid.ItemsSource = Utils.db.Payment.ToList();
+                sellDataGrid.ItemsSource = Utils.db.Sell.ToList();
             }
             catch (Exception ex)
             {
@@ -39,46 +39,35 @@ namespace Tourism
 
         private void addBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new PaymentPage());
+            NavigationService.Navigate(new SellPage());
         }
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (paymentDataGrid.SelectedItem == null)
+            if (sellDataGrid.SelectedItem == null)
             {
-<<<<<<< Updated upstream
-                MessageBox.Show("Выберите оплату");
-=======
-                MessageBox.Show("Выберите тур");
->>>>>>> Stashed changes
+                MessageBox.Show("Выберите продажу");
                 return;
             }
-            Payment selected = paymentDataGrid.SelectedItem as Payment;
-            NavigationService.Navigate(new PaymentPage(selected));
+            Sell selected = sellDataGrid.SelectedItem as Sell;
+            NavigationService.Navigate(new SellPage(selected));
         }
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (paymentDataGrid.SelectedItem == null)
+            if (sellDataGrid.SelectedItem == null)
             {
-<<<<<<< Updated upstream
-                MessageBox.Show("Выберите оплату");
-                return;
-            }
-            if (MessageBox.Show("Вы точно хотите удалить эту оплату?",
-=======
                 MessageBox.Show("Выберите продажу");
                 return;
             }
-            if (MessageBox.Show("Вы точно хотите удалить этот тур?",
->>>>>>> Stashed changes
+            if (MessageBox.Show("Вы точно хотите удалить эту продажу?",
                 "Подтвердите удаление", MessageBoxButton.YesNo,
                 MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    Payment selected = paymentDataGrid.SelectedItem as Payment;
-                    Utils.db.Payment.Remove(selected);
+                    Sell selected = sellDataGrid.SelectedItem as Sell;
+                    Utils.db.Sell.Remove(selected);
                     Utils.db.SaveChanges();
                     Page_Loaded(null, null);
                 }
