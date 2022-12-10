@@ -21,21 +21,10 @@
         <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" Click="deleteBtn_Click" BorderBrush="Red" BorderThickness="3"/>
         <DataGrid x:Name="paymentDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3"  Grid.Row="1">
             <DataGrid.Columns>
-<<<<<<< Updated upstream
                 <DataGridTextColumn x:Name="amountColumn" Binding="{Binding Amount, StringFormat={}{0} руб.}" Header="Сумма" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="bookingIdColumn" Binding="{Binding BookingId}" Header="Номер заказа" Width="SizeToCells"/>
                 <DataGridTextColumn x:Name="dateColumn" Binding="{Binding Date, StringFormat=d}" Header="Дата" Width="SizeToCells"/>
-=======
-                <DataGridTextColumn x:Name="amountColumn" Binding="{Binding Amount}" Header="Сумма" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="bookingIdColumn" Binding="{Binding BookingId}" Header="Номер заказа" Width="SizeToHeader"/>
-                <DataGridTemplateColumn x:Name="dateColumn" Header="Дата" Width="SizeToCells">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
->>>>>>> Stashed changes
+
             </DataGrid.Columns>
         </DataGrid>
 

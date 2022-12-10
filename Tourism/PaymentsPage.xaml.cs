@@ -46,11 +46,11 @@ namespace Tourism
         {
             if (paymentDataGrid.SelectedItem == null)
             {
-<<<<<<< Updated upstream
+
                 MessageBox.Show("Выберите оплату");
-=======
+
                 MessageBox.Show("Выберите тур");
->>>>>>> Stashed changes
+
                 return;
             }
             Payment selected = paymentDataGrid.SelectedItem as Payment;
@@ -61,17 +61,11 @@ namespace Tourism
         {
             if (paymentDataGrid.SelectedItem == null)
             {
-<<<<<<< Updated upstream
+
                 MessageBox.Show("Выберите оплату");
                 return;
             }
             if (MessageBox.Show("Вы точно хотите удалить эту оплату?",
-=======
-                MessageBox.Show("Выберите продажу");
-                return;
-            }
-            if (MessageBox.Show("Вы точно хотите удалить этот тур?",
->>>>>>> Stashed changes
                 "Подтвердите удаление", MessageBoxButton.YesNo,
                 MessageBoxImage.Question) == MessageBoxResult.Yes)
             {

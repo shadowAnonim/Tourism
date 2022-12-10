@@ -78,7 +78,7 @@ namespace Tourism
                 Utils.Error("Поля должны иметь числовое значение");
                 return;
             }
-            sell.TourSell.Add(new TourSell() { Sell = sell, People_count = count, Price = price, Tour = selected });
+            //sell.TourSell.Add(new TourSell() { Sell = sell, People_count = count, Price = price, Tour = selected });
             sellGrid.DataContext = null;
             sellGrid.DataContext = sell;
         }

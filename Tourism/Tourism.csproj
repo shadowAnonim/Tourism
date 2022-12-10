@@ -193,12 +193,9 @@
     <Compile Include="SellPage.xaml.cs">
       <DependentUpon>SellPage.xaml</DependentUpon>
     </Compile>
-<<<<<<< Updated upstream
-=======
     <Compile Include="SellsPage.xaml.cs">
       <DependentUpon>SellsPage.xaml</DependentUpon>
     </Compile>
->>>>>>> Stashed changes
     <Compile Include="Tour.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
@@ -281,13 +278,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PaymentPage.xaml">
-<<<<<<< Updated upstream
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-=======
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
->>>>>>> Stashed changes
     </Page>
     <Page Include="PaymentsPage.xaml">
       <SubType>Designer</SubType>
@@ -310,17 +302,12 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SellPage.xaml">
-<<<<<<< Updated upstream
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-=======
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SellsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
->>>>>>> Stashed changes
     </Page>
     <Page Include="TourPage.xaml">
       <SubType>Designer</SubType>
