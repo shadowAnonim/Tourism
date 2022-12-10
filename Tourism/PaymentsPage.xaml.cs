@@ -46,7 +46,7 @@ namespace Tourism
         {
             if (paymentDataGrid.SelectedItem == null)
             {
-                MessageBox.Show("Выберите управляющего");
+                MessageBox.Show("Выберите оплату");
                 return;
             }
             Payment selected = paymentDataGrid.SelectedItem as Payment;
@@ -57,10 +57,10 @@ namespace Tourism
         {
             if (paymentDataGrid.SelectedItem == null)
             {
-                MessageBox.Show("Выберите управляющего");
+                MessageBox.Show("Выберите оплату");
                 return;
             }
-            if (MessageBox.Show("Вы точно хотите удалить этого управляющего?",
+            if (MessageBox.Show("Вы точно хотите удалить эту оплату?",
                 "Подтвердите удаление", MessageBoxButton.YesNo,
                 MessageBoxImage.Question) == MessageBoxResult.Yes)
             {

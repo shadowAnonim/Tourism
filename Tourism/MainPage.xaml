@@ -29,6 +29,7 @@
             <GroupBox Header="Информация о заказах">
                 <StackPanel>
                     <Button x:Name="bookingsBtn" Content="Заказы" Click="bookingsBtn_Click"/>
+                    <Button x:Name="paymentsBtn" Content="Оплаты" Click="paymentsBtn_Click"/>
                 </StackPanel>
             </GroupBox>
         </StackPanel>

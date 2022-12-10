@@ -25,7 +25,7 @@ namespace Tourism
 
         Payment payment;
         bool edit = false;
-        public PaymentPage(Payment payment = null)
+        public PaymentPage(Payment payment = null, Booking booking = null)
         {
             InitializeComponent();
             try
@@ -33,6 +33,7 @@ namespace Tourism
                 if (payment == null)
                 {
                     this.payment = new Payment();
+                    this.payment.Booking = booking;
                 }
                 else
                 {
@@ -40,7 +41,7 @@ namespace Tourism
                     edit = true;
                 }
                 paymentGrid.DataContext = this.payment;
-                bookingIdTextBox.ItemsSource = Utils.db.Booking.ToList();
+                amountTextBox.Text = this.payment.Booking.Total.ToString();
             }
             catch (Exception ex)
             {
@@ -54,7 +55,10 @@ namespace Tourism
             try
             {
                 if (!edit)
+                {
+                    payment.Date = DateTime.Now;
                     Utils.db.Payment.Add(payment);
+                }                  
                 Utils.db.SaveChanges();
                 NavigationService.GoBack();
             }
@@ -66,8 +70,7 @@ namespace Tourism
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!edit)
-                bookingIdTextBox.SelectedIndex = 0;
+
         }
     }
 }

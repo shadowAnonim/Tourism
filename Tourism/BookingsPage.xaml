@@ -27,7 +27,7 @@
             <ComboBox x:Name="statusCb" SelectionChanged="statusCb_SelectionChanged" DisplayMemberPath="Name"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="1">    
-            <Button x:Name="payBtn" Content="Оплатить" Click="editBtn_Click"/>
+            <Button x:Name="payBtn" Content="Оплатить" Click="payBtn_Click"/>
             <Button x:Name="sellBtn" Content="Продать" Click="sellBtn_Click"/>
         </StackPanel>
         <Button x:Name="cancelBtn" Content="Отменить" Grid.Column="2" Click="cancelBtn_Click" BorderBrush="Red" BorderThickness="3" Grid.Row="1"/>

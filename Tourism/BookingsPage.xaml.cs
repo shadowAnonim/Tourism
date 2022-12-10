@@ -138,5 +138,21 @@ namespace Tourism
                 }
             }
         }
+
+        private void payBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (bookingDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите заказ");
+                return;
+            }
+            Booking selected = bookingDataGrid.SelectedItem as Booking;
+            if (selected.Payment.Count > 0)
+            {
+                MessageBox.Show("Этот заказ уже оплачен");
+                return;
+            }
+            NavigationService.Navigate(new PaymentPage(booking: (bookingDataGrid.SelectedItem as Booking)));
+        }
     }
 }
