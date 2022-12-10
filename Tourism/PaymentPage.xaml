@@ -7,13 +7,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Оплата тура">
-    <Page.Resources>
-        <CollectionViewSource x:Key="paymentViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Payment}}"/>
-    </Page.Resources>
 
     <Grid>
         <StackPanel>
-            <Grid x:Name="paymentGrid" DataContext="{StaticResource paymentViewSource}" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid x:Name="paymentGrid" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>

@@ -138,6 +138,8 @@
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TourId" Type="integer" Nullable="false" />
           <Property Name="SellId" Type="integer" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="PeopleCount" Type="integer" Nullable="false" />
         </EntityType>
         <Association Name="FK_Booking_0_0">
           <End Role="PaymentStatus" Type="Self.PaymentStatus" Multiplicity="1" />
@@ -580,6 +582,8 @@
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TourId" Type="Int64" Nullable="false" />
           <Property Name="SellId" Type="Int64" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="9" Scale="2" Nullable="false" />
+          <Property Name="PeopleCount" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Sell" Relationship="Self.FK_TourSell_0_0" FromRole="TourSell" ToRole="Sell" />
           <NavigationProperty Name="Tour" Relationship="Self.FK_TourSell_1_0" FromRole="TourSell" ToRole="Tour" />
         </EntityType>
@@ -1008,6 +1012,8 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TourId" ColumnName="TourId" />
                 <ScalarProperty Name="SellId" ColumnName="SellId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PeopleCount" ColumnName="PeopleCount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -106,7 +106,18 @@ namespace Tourism
 
         private void sellBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            if (bookingDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите заказ");
+                return;
+            }
+            Booking selected = bookingDataGrid.SelectedItem as Booking;
+            if (selected.StatusId == 2)
+            {
+                MessageBox.Show("Этот заказ уже продан");
+                return;
+            }
+            NavigationService.Navigate(new SellPage(booking: (bookingDataGrid.SelectedItem as Booking)));
         }
 
         private void cancelBtn_Click(object sender, RoutedEventArgs e)

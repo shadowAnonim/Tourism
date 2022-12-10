@@ -107,7 +107,11 @@ namespace Tourism
             try
             {
                 Tour_booking selected = tour_bookingDataGrid.SelectedItem as Tour_booking;
-                Utils.db.Tour_booking.Remove(selected);
+                try
+                {
+                    Utils.db.Tour_booking.Remove(selected);
+                }
+                catch { }
                 booking.Tour_booking.Remove(selected);
                 bookingGrid.DataContext = null;
                 bookingGrid.DataContext = booking;

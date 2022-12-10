@@ -17,6 +17,8 @@ namespace Tourism
         public long Id { get; set; }
         public long TourId { get; set; }
         public long SellId { get; set; }
+        public decimal Price { get; set; }
+        public long PeopleCount { get; set; }
     
         public virtual Sell Sell { get; set; }
         public virtual Tour Tour { get; set; }

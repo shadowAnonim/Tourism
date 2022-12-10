@@ -11,6 +11,19 @@ namespace Tourism
         public decimal Total { get { return Price * People_count; } }
     }
 
+    public partial class TourSell
+    {
+        public decimal Total { get { return Price * PeopleCount; } }
+    }
+
+    public partial class Sell
+    {
+        public decimal Total
+        {
+            get { return TourSell.Sum(x => x.Total); }
+        }
+    }
+
     public partial class Booking
     {
         public decimal Total

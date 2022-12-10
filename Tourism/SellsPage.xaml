@@ -18,19 +18,13 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="addBtn" Content="Добавить" Grid.Column="0" Click="addBtn_Click"/>
         <Button x:Name="editBtn" Content="Редактировать" Grid.Column="1" Click="editBtn_Click"/>
         <Button x:Name="deleteBtn" Content="Удалить" Grid.Column="2" Click="deleteBtn_Click" BorderBrush="Red" BorderThickness="3"/>
         <DataGrid x:Name="sellDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Grid.Row="1" Grid.ColumnSpan="3" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="bookingIdColumn" Binding="{Binding BookingId}" Header="Номер заказа" Width="SizeToHeader"/>
-                <DataGridTemplateColumn x:Name="dateColumn" Header="Дата" Width="SizeToCells">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <DatePicker SelectedDate="{Binding Date, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <DataGridTextColumn x:Name="bookingIdColumn" Binding="{Binding BookingId}" Header="Номер заказа" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="dateColumn" Binding="{Binding Date, StringFormat=d}" Header="Дата" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="totalColumn" Binding="{Binding Total, StringFormat={}{0} руб.}" Header="Сумма" Width="SizeToCells"/>
                 <DataGridCheckBoxColumn x:Name="reservationConfirmedColumn" Binding="{Binding ReservationConfirmed}" Header="Подтверждение брони" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>

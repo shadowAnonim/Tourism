@@ -26,7 +26,7 @@ namespace Tourism
         Sell sell;
         bool edit = false;
         List<TourSell> tours;
-        public SellPage(Sell sell = null)
+        public SellPage(Sell sell = null, Booking booking = null)
         {
             InitializeComponent();
             try
@@ -34,6 +34,11 @@ namespace Tourism
                 if (sell == null)
                 {
                     this.sell = new Sell();
+                    this.sell.Booking = booking;
+                    foreach (Tour_booking tour in booking.Tour_booking)
+                    {
+                        this.sell.TourSell.Add(new TourSell { PeopleCount = tour.People_count, Price = tour.Price, Tour = tour.Tour });
+                    }
                 }
                 else
                 {
@@ -41,6 +46,7 @@ namespace Tourism
                     edit = true;
                 }
                 sellGrid.DataContext = this.sell;
+                toursCb.ItemsSource = Utils.db.Tour.ToList();
             }
             catch (Exception ex)
             {
@@ -78,7 +84,7 @@ namespace Tourism
                 Utils.Error("Поля должны иметь числовое значение");
                 return;
             }
-            //sell.TourSell.Add(new TourSell() { Sell = sell, People_count = count, Price = price, Tour = selected });
+            sell.TourSell.Add(new TourSell() { Sell = sell, PeopleCount = count, Price = price, Tour = selected });
             sellGrid.DataContext = null;
             sellGrid.DataContext = sell;
         }
@@ -93,7 +99,11 @@ namespace Tourism
             try
             {
                 TourSell selected = tour_sellDataGrid.SelectedItem as TourSell;
-                Utils.db.TourSell.Remove(selected);
+                try
+                {
+                    Utils.db.TourSell.Remove(selected);
+                }
+                catch { }
                 sell.TourSell.Remove(selected);
                 sellGrid.DataContext = null;
                 sellGrid.DataContext = sell;

@@ -6,14 +6,11 @@
       xmlns:local="clr-namespace:Tourism"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SellPage" Loaded="Page_Loaded">
-    <Page.Resources>
-        <CollectionViewSource x:Key="sellViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Sell}}"/>
-    </Page.Resources>
+      Title="Продажа" Loaded="Page_Loaded">
 
     <Grid>
         <StackPanel>
-            <Grid x:Name="sellGrid" DataContext="{StaticResource sellViewSource}" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid x:Name="sellGrid" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -25,15 +22,15 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="200"/>
                 </Grid.RowDefinitions>
-                <DataGrid x:Name="tour_sellDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Tour_booking}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2" Grid.Row="4">
+                <DataGrid x:Name="tour_sellDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding TourSell}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2" Grid.Row="4">
                     <DataGrid.Columns>
                         <DataGridTextColumn x:Name="tour_idColumn" Binding="{Binding Tour.Name}" Header="Тур" Width="SizeToCells" IsReadOnly="True"/>
-                        <DataGridTextColumn x:Name="people_countColumn" Binding="{Binding People_count}" Header="Количество человек" Width="SizeToHeader"/>
+                        <DataGridTextColumn x:Name="people_countColumn" Binding="{Binding PeopleCount}" Header="Количество человек" Width="SizeToHeader"/>
                         <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price, StringFormat={}{0} руб.}" Header="Цена" Width="SizeToHeader"/>
                         <DataGridTextColumn x:Name="totalColumn" Binding="{Binding Total, StringFormat={}{0} руб.}" Header="Сумма" Width="SizeToHeader"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Label Grid.Column="0" Content="Подтверждение брони:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Content="Бронь подтверждена:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
                 <CheckBox x:Name="reservationConfirmedCheckBox" Grid.Column="1" Content="" HorizontalAlignment="Left" IsChecked="{Binding ReservationConfirmed, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             </Grid>
             <StackPanel Orientation="Horizontal">
