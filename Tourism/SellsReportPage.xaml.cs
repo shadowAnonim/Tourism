@@ -54,14 +54,9 @@ namespace Tourism
                 List<Tour> tours = Utils.db.Tour.ToList();
                 foreach (Tour tour in tours)
                 {
-                    tour.Tour_booking = tour.Tour_booking.
-                        Where(t => t.Booking.Date >= startDp.SelectedDate.Value
-                        && t.Booking.Date <= endDp.SelectedDate.Value).ToList();
-                    tour.TourSell = tour.TourSell.
-                        Where(t => t.Sell.Date >= startDp.SelectedDate.Value
-                        && t.Sell.Date <= endDp.SelectedDate.Value).ToList();
-                    bookingSeries.Points.AddXY(tour.Name, tour.Tour_booking.Count);
-                    sellSeries.Points.AddXY(tour.Name, tour.TourSell.Count);
+                    tour.SetPeriod(startDp.SelectedDate.Value, endDp.SelectedDate.Value);
+                    bookingSeries.Points.AddXY(tour.Name, tour.periodBooking.Count);
+                    sellSeries.Points.AddXY(tour.Name, tour.periodSell.Count);
                 }
                 tourDataGrid.ItemsSource = tours;
 
