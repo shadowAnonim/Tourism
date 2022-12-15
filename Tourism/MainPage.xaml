@@ -13,6 +13,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel>
         <GroupBox Header="Информация об отелях">
@@ -40,6 +41,14 @@
                     <Button x:Name="bookingsBtn" Content="Заказы" Click="bookingsBtn_Click"/>
                     <Button x:Name="paymentsBtn" Content="Оплаты" Click="paymentsBtn_Click"/>
                     <Button x:Name="sellsBtn" Content="Продажи" Click="sellsBtn_Click"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel Grid.Column="3">
+            <GroupBox Header="Отчёты">
+                <StackPanel>
+                    <Button x:Name="sellsReportBtn" Content="Отчёт о продажах" Click="sellsReportBtn_Click"/>
+                    <Button x:Name="moneyReportBtn" Content="Отчёт о средствах" Click="moneyReportBtn_Click"/>
                 </StackPanel>
             </GroupBox>
         </StackPanel>

@@ -154,6 +154,9 @@
       <DependentUpon>ManagersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerView.cs" />
+    <Compile Include="MoneyReportPage.xaml.cs">
+      <DependentUpon>MoneyReportPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Payment.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
@@ -195,6 +198,9 @@
     </Compile>
     <Compile Include="SellsPage.xaml.cs">
       <DependentUpon>SellsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SellsReportPage.xaml.cs">
+      <DependentUpon>SellsReportPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tour.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
@@ -277,6 +283,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MoneyReportPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PaymentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -306,6 +316,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SellsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SellsReportPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
