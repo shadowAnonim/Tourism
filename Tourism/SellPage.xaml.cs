@@ -60,7 +60,11 @@ namespace Tourism
             try
             {
                 if (!edit)
+                {
+                    sell.Date = DateTime.Now;
+                    sell.Booking.StatusId = 3;
                     Utils.db.Sell.Add(sell);
+                }
                 Utils.db.SaveChanges();
                 NavigationService.GoBack();
             }

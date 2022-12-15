@@ -67,6 +67,11 @@ namespace Tourism
                 try
                 {
                     Sell selected = sellDataGrid.SelectedItem as Sell;
+                    List<TourSell> tours = new List<TourSell>();
+                    foreach (TourSell tour in selected.TourSell)
+                        tours.Add(tour);
+                    foreach (TourSell tour in tours)
+                        Utils.db.TourSell.Remove(tour);
                     Utils.db.Sell.Remove(selected);
                     Utils.db.SaveChanges();
                     Page_Loaded(null, null);

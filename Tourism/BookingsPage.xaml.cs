@@ -88,6 +88,11 @@ namespace Tourism
                 try
                 {
                     Booking selected = bookingDataGrid.SelectedItem as Booking;
+                    List<Tour_booking> tours = new List<Tour_booking>();
+                    foreach (Tour_booking tour in selected.Tour_booking)
+                        tours.Add(tour);
+                    foreach (Tour_booking tour in tours)
+                        Utils.db.Tour_booking.Remove(tour);
                     Utils.db.Booking.Remove(selected);
                     Utils.db.SaveChanges();
                     Page_Loaded(null, null);
@@ -112,9 +117,19 @@ namespace Tourism
                 return;
             }
             Booking selected = bookingDataGrid.SelectedItem as Booking;
-            if (selected.StatusId == 2)
+            if (selected.StatusId != 1)
+            {
+                MessageBox.Show("Этот заказ не действующий");
+                return;
+            }
+            if (selected.Sell.Count > 0)
             {
                 MessageBox.Show("Этот заказ уже продан");
+                return;
+            }
+            if (selected.Payment_type_id != 2 && selected.Payment.Count == 0)
+            {
+                MessageBox.Show("Этот заказ не оплачивается в кредит, поэтому его нельзя продать до оплаты");
                 return;
             }
             NavigationService.Navigate(new SellPage(booking: (bookingDataGrid.SelectedItem as Booking)));
@@ -158,9 +173,9 @@ namespace Tourism
                 return;
             }
             Booking selected = bookingDataGrid.SelectedItem as Booking;
-            if (selected.StatusId == 2)
+            if (selected.StatusId != 1)
             {
-                MessageBox.Show("Этот заказ уже отменён");
+                MessageBox.Show("Этот заказ не действующий");
                 return;
             }
             if (selected.Payment.Count > 0)
