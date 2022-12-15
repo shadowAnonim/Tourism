@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Tourism
 {
@@ -88,6 +93,24 @@ namespace Tourism
                 pdfBtn.Visibility = Visibility.Visible;
                 csvBtn.Visibility = Visibility.Visible;
             }
+        }
+
+        private void csvBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog path = new SaveFileDialog();
+            path.Filter = "csv files(*.csv) | *.csv";
+            if (path.ShowDialog() != true)
+            {
+                return;
+            }
+            string strSeperator = ";";
+            StringBuilder sbOutput = new StringBuilder();
+            sbOutput.Append(string.Join(strSeperator, "Название тура", "Количество заказов", "Количество продаж", "\n"));
+            foreach (Tour tour in Utils.db.Tour.ToList())
+            {
+                sbOutput.Append(string.Join(strSeperator, tour.Name, tour.Tour_booking.Count, tour.TourSell.Count, "\n"));
+            }
+            File.WriteAllText(path.FileName, sbOutput.ToString(), Encoding.UTF8);
         }
     }
 }
