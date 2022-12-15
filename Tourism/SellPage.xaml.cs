@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,30 +18,34 @@ using System.Windows.Shapes;
 namespace Tourism
 {
     /// <summary>
-    /// Логика взаимодействия для BookingPage.xaml
+    /// Логика взаимодействия для SellPage.xaml
     /// </summary>
-    public partial class BookingPage : Page
+    public partial class SellPage : Page
     {
-        Booking booking;
+
+        Sell sell;
         bool edit = false;
-        List<Tour_booking> tours;
-        public BookingPage(Booking booking = null)
+        List<TourSell> tours;
+        public SellPage(Sell sell = null, Booking booking = null)
         {
             InitializeComponent();
             try
             {
-                if (booking == null)
+                if (sell == null)
                 {
-                    this.booking = new Booking();
+                    this.sell = new Sell();
+                    this.sell.Booking = booking;
+                    foreach (Tour_booking tour in booking.Tour_booking)
+                    {
+                        this.sell.TourSell.Add(new TourSell { PeopleCount = tour.People_count, Price = tour.Price, Tour = tour.Tour });
+                    }
                 }
                 else
                 {
-                    this.booking = booking;
+                    this.sell = sell;
                     edit = true;
                 }
-                bookingGrid.DataContext = this.booking;
-                client_idTextBox.ItemsSource = Utils.db.Client.ToList();
-                payment_type_idTextBox.ItemsSource = Utils.db.Payment_type.ToList();
+                sellGrid.DataContext = this.sell;
                 toursCb.ItemsSource = Utils.db.Tour.ToList();
             }
             catch (Exception ex)
@@ -50,32 +56,22 @@ namespace Tourism
 
         private void saveBtn_Click(object sender, RoutedEventArgs e)
         {
+
             try
             {
                 if (!edit)
                 {
-                    booking.StatusId = 1;
-                    booking.Date = DateTime.Now;
-                    Utils.db.Booking.Add(booking);
+                    sell.Date = DateTime.Now;
+                    sell.Booking.StatusId = 3;
+                    Utils.db.Sell.Add(sell);
                 }
                 Utils.db.SaveChanges();
                 NavigationService.GoBack();
-
             }
             catch (Exception ex)
             {
                 Utils.Error(ex.Message);
             }
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (!edit)
-            {
-                client_idTextBox.SelectedIndex = 0;
-                payment_type_idTextBox.SelectedIndex = 0;
-            }
-            toursCb.SelectedIndex = 0;
         }
 
         private void toursCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,34 +88,39 @@ namespace Tourism
                 Utils.Error("Поля должны иметь числовое значение");
                 return;
             }
-            booking.Tour_booking.Add(new Tour_booking() { Booking = booking, People_count = count, Price = price, Tour = selected });
-            bookingGrid.DataContext = null;
-            bookingGrid.DataContext = booking;
+            sell.TourSell.Add(new TourSell() { Sell = sell, PeopleCount = count, Price = price, Tour = selected });
+            sellGrid.DataContext = null;
+            sellGrid.DataContext = sell;
         }
 
         private void removeBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (tour_bookingDataGrid.SelectedItem == null)
+            if (tour_sellDataGrid.SelectedItem == null)
             {
                 MessageBox.Show("Выберите тур");
                 return;
             }
             try
             {
-                Tour_booking selected = tour_bookingDataGrid.SelectedItem as Tour_booking;
+                TourSell selected = tour_sellDataGrid.SelectedItem as TourSell;
                 try
                 {
-                    Utils.db.Tour_booking.Remove(selected);
+                    Utils.db.TourSell.Remove(selected);
                 }
                 catch { }
-                booking.Tour_booking.Remove(selected);
-                bookingGrid.DataContext = null;
-                bookingGrid.DataContext = booking;
+                sell.TourSell.Remove(selected);
+                sellGrid.DataContext = null;
+                sellGrid.DataContext = sell;
             }
             catch (Exception ex)
             {
                 Utils.Error(ex.Message);
             }
-    }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            toursCb.SelectedIndex = 0;
+        }
     }
 }

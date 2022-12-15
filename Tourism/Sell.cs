@@ -12,28 +12,20 @@ namespace Tourism
     using System;
     using System.Collections.Generic;
     
-    public partial class Tour
+    public partial class Sell
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tour()
+        public Sell()
         {
-            this.Tour_booking = new HashSet<Tour_booking>();
             this.TourSell = new HashSet<TourSell>();
         }
     
         public long Id { get; set; }
-        public long Hotel_id { get; set; }
-        public System.DateTime Arrival_date { get; set; }
-        public System.DateTime Departure_date { get; set; }
-        public long Feeding_id { get; set; }
-        public decimal Price { get; set; }
-        public string Description { get; set; }
-        public string Name { get; set; }
+        public System.DateTime Date { get; set; }
+        public bool ReservationConfirmed { get; set; }
+        public long BookingId { get; set; }
     
-        public virtual Feeding Feeding { get; set; }
-        public virtual Hotel Hotel { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tour_booking> Tour_booking { get; set; }
+        public virtual Booking Booking { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TourSell> TourSell { get; set; }
     }

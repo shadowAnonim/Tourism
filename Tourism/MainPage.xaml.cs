@@ -69,5 +69,25 @@ namespace Tourism
         {
             NavigationService.Navigate(new BookingsPage());
         }
+
+        private void paymentsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PaymentsPage());
+        }
+
+        private void sellsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new SellsPage());
+        }
+
+        private void sellsReportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new SellsReportPage());
+        }
+
+        private void moneyReportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MoneyReportPage());
+        }
     }
 }

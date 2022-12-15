@@ -12,13 +12,15 @@ namespace Tourism
     using System;
     using System.Collections.Generic;
     
-    public partial class Payment
+    public partial class TourSell
     {
         public long Id { get; set; }
-        public long BookingId { get; set; }
-        public decimal Amount { get; set; }
-        public System.DateTime Date { get; set; }
+        public long TourId { get; set; }
+        public long SellId { get; set; }
+        public decimal Price { get; set; }
+        public long PeopleCount { get; set; }
     
-        public virtual Booking Booking { get; set; }
+        public virtual Sell Sell { get; set; }
+        public virtual Tour Tour { get; set; }
     }
 }
