@@ -26,7 +26,7 @@
             <Label Content="Конец периода:"/>
             <DatePicker x:Name="endDp" SelectedDateChanged="startDp_SelectedDateChanged"/>
             <Button x:Name="pdfBtn" Content="Печать..." Click="pdfBtn_Click"/>
-            <Button x:Name="csvBtn" Content="Экспорт в CSV..."/>
+            <Button x:Name="csvBtn" Content="Экспорт в CSV..." Click="csvBtn_Click"/>
         </StackPanel>
         <DataGrid x:Name="tourDataGrid"  Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3">
             <DataGrid.Columns>
