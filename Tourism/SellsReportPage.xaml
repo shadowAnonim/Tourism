@@ -3,13 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:c="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
       xmlns:local="clr-namespace:Tourism"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Отчёт о продажах" Loaded="Page_Loaded">
 
-    <Grid>
+    <Grid x:Name="mainGrid">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
@@ -17,20 +20,28 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
             <Label Content="Начало периода:"/>
             <DatePicker x:Name="startDp" SelectedDateChanged="startDp_SelectedDateChanged"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Column="1">
             <Label Content="Конец периода:"/>
             <DatePicker x:Name="endDp" SelectedDateChanged="startDp_SelectedDateChanged"/>
+            <Button x:Name="pdfBtn" Content="Печать..." Click="pdfBtn_Click"/>
+            <Button x:Name="csvBtn" Content="Экспорт в CSV..."/>
         </StackPanel>
         <DataGrid x:Name="tourDataGrid"  Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="tour_name" Binding="{Binding Name}" Header="Название" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="ordersColumn" Binding="{Binding Tour_booking.Count}" Header="Заказано" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="sellsColumn" Binding="{Binding TourSell.Count}" Header="Продано" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="ordersColumn" Binding="{Binding Tour_booking.Count}" Header="Заказано" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="sellsColumn" Binding="{Binding TourSell.Count}" Header="Продано" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Label Grid.Row="2" Content="Заказы"/>
+        <Label Grid.Column="1" Grid.Row="2" Content="Продажи"/>
+        <WindowsFormsHost HorizontalAlignment="Stretch" Grid.Row="3" VerticalAlignment="Stretch">
+            <c:Chart x:Name="bookingChart"/>
+        </WindowsFormsHost>
+        <WindowsFormsHost HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="3" VerticalAlignment="Stretch">
+            <c:Chart x:Name="sellChart"/>
+        </WindowsFormsHost>
     </Grid>
 </Page>
