@@ -28,9 +28,10 @@
         <DataGrid x:Name="tourDataGrid"  Grid.Row="1" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="3">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="tour_name" Binding="{Binding Name}" Header="Название" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="ordersColumn" Binding="{Binding Tour_booking.Count}" Header="Заказано" Width="SizeToCells"/>
-                <DataGridTextColumn x:Name="sellsColumn" Binding="{Binding TourSell.Count}" Header="Продано" Width="SizeToCells"/>
+                <DataGridTextColumn x:Name="ordersColumn" Binding="{Binding Tour_booking.Count}" Header="Заказано" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="sellsColumn" Binding="{Binding TourSell.Count}" Header="Продано" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="saveBtn" Content="Сохранить в CSV" Click="csvBtn_Click" Grid.Column="1" Margin="265,369,0,0" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
     </Grid>
 </Page>
