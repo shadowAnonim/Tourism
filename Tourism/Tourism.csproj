@@ -157,6 +157,9 @@
     <Compile Include="Payment.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PaymentPage.xaml.cs">
+      <DependentUpon>PaymentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PaymentStatus.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
     </Compile>
@@ -180,6 +183,9 @@
     </Compile>
     <Compile Include="RolesPage.xaml.cs">
       <DependentUpon>RolesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentsPage.xaml.cs">
+      <DependentUpon>PaymentsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tour.cs">
       <DependentUpon>DbModel.tt</DependentUpon>
@@ -259,6 +265,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PaymentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RegionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -272,6 +282,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RolesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PaymentsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

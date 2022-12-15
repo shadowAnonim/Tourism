@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Tourism"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClientTypePage">
+      Title="Тип клиента">
 
     <Grid>
         <StackPanel>
@@ -18,7 +18,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Column="0" Content="Type:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                <Label Grid.Column="0" Content="Тип:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="typeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding Type, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             </Grid>
             <Button x:Name="saveBtn" Content="Сохранить" Click="saveBtn_Click"/>
